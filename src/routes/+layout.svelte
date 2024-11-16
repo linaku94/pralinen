@@ -9,9 +9,9 @@
 			<a href="/" class="great-vibes-regular">Pralinen aus Karlsruhe</a>
 		</div>
 		<ul class="flex space-x-4">
-			<li><a href="/" class="nav-element">Home</a></li>
-			<li><a href="/about" class="nav-element">About</a></li>
-			<li><a href="/contact" class="nav-element">Contact</a></li>
+			<li><a href="/about" class="nav-element">Pralinen 2024</a></li>
+			<li><a href="/about" class="nav-element">Feedback</a></li>
+			<li><a href="/contact" class="nav-element">Vergangene Kollektionen</a></li>
 		</ul>
 	</div>
 </nav>
@@ -24,9 +24,6 @@
 		color: rgb(156 163 175);
 	}
   .great-vibes-regular {
-      font-family: "Great Vibes", cursive;
-      font-weight: 400;
-      font-style: normal;
 			font-size: xxx-large;
   }
 
