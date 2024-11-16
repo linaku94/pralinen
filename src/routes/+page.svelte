@@ -19,12 +19,11 @@ import PictureBand from './PictureBand.svelte';
 <style>
 .great-vibes-regular {
 		padding-top: 100px;
-		padding-bottom: 100px;
 		text-align: center;
 		font-size: xx-large;
 }
 .regular-text {
-		padding-top: 100px;
+		padding-top: 50px;
 		padding-bottom: 100px;
 		text-align: center;
 		font-size: medium;

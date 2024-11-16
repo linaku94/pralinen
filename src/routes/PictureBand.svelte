@@ -6,7 +6,7 @@ import pralinen_4 from '$lib/assets/pralinen_4.jpg';
 const pictures = [pralinen_1, pralinen_2, pralinen_3, pralinen_4];
 </script>
 
-<div class="container mx-auto flex justify-between items-center">
+<div class="container mx-auto flex justify-between items-center pb-10">
 	{#each pictures as picture}
 	<img class="image_band_class" alt="pralinen bild 1" src={picture}/>
 	{/each}
