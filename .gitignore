@@ -28,6 +28,3 @@ node_modules
 
 # svelte
 .svelte-kit
-
-# yarn
-.yarn
