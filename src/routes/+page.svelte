@@ -12,21 +12,22 @@ import PictureBand from './PictureBand.svelte';
 			Auf unserer Seite findet ihr unsere aktuelle Kollektion, sowie Sammlungen aus früheren Jahren.<br />
 			Viel Spass beim Verkosten! Lasst uns gerne Feedback da!
 		</p>
+<!--		<PictureBand/>-->
 	</div>
-	<PictureBand />
 </main>
 
 <style>
-.great-vibes-regular {
-		padding-top: 100px;
-		text-align: center;
-		font-size: xx-large;
-}
-.regular-text {
-		padding-top: 50px;
-		padding-bottom: 100px;
-		text-align: center;
-		font-size: medium;
-}
+    .great-vibes-regular {
+        padding-top: 100px;
+        text-align: center;
+        font-size: xx-large;
+    }
+
+    .regular-text {
+        padding-top: 50px;
+        padding-bottom: 100px;
+        text-align: center;
+        font-size: medium;
+    }
 </style>
 
