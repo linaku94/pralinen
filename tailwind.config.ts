@@ -11,7 +11,8 @@ export default {
 				chocolate: '#6B360F',
 				'chocolate-dark': '#45220A',
 				'chocolate-light': '#945E38',
-				'chocolate-white' : '#EDE6D6'
+				'chocolate-white' : '#EDE6D6',
+				'chocolate-caramel' : '#FFD29A'
 			}
 		}
 	},
