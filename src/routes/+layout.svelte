@@ -1,42 +1,47 @@
 <script lang="ts">
 	import '../app.css';
+
 	let { children } = $props();
 </script>
 
-<nav class="bg-slate-300 text-slate-700 p-10">
+<nav class="bg-chocolate-light text-chocolate-dark p-10">
 	<div class="container mx-auto flex justify-between items-center">
 		<div class="text-lg font-bold">
-			<a href="/" class="great-vibes-regular">Pralinen aus Karlsruhe</a>
+			<a href="/" class="great-vibes-regular hover:text-chocolate-white">Pralinen aus Karlsruhe</a>
 		</div>
 		<ul class="flex space-x-4">
-			<li><a href="/pralinen" class="nav-element">Pralinen 2024</a></li>
-			<li><a href="/feedback" class="nav-element">Feedback</a></li>
-			<li><a href="/kollektionen" class="nav-element">Kollektionen</a></li>
+			<li><a href="/pralinen" class="hover:text-chocolate-white">Pralinen 2024</a></li>
+			<li><a href="/umfrage" class="hover:text-chocolate-white">Umfrage</a></li>
+			<li>
+				<details>
+					<summary class="hover:text-chocolate-white">Kollektionen</summary>
+					<ul class="rounded-t-none p-2 nav-element">
+						<li><a href="/kollektionen/2023" class="nav-element">2023</a></li>
+						<li><a href="/kollektionen/2022" class="nav-element">2022</a></li>
+						<li><a href="/kollektionen/2021" class="nav-element">2021</a></li>
+					</ul>
+				</details>
+			</li>
 		</ul>
 	</div>
 </nav>
 
+<main class="mb-auto h-screen bg-chocolate-white text-chocolate-dark">
 {@render children()}
+</main>
 
-<footer class="bg-slate-300 shadow p-4 dark:bg-gray-800 bottom-0 absolute w-full">
+<footer class="bg-chocolate-light text-chocolate-dark w-full p-2">
 	<div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-		<span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">Pralinen aus Karlsruhe</span>
-		<ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+		<span class="sm:text-center  hover:text-chocolate-white">Pralinen aus Karlsruhe</span>
+		<ul class="flex flex-wrap items-center sm:mt-0">
 			<li>
-				<a href="/" class="hover:underline">Kontakt</a>
+				<a href="/philosophie" class="hover:text-chocolate-white">Philosophie</a>
 			</li>
 		</ul>
 	</div>
 </footer>
 
 <style>
-    .nav-element {
-        color: rgb(51 65 85);
-    }
-
-    .nav-element:hover {
-        color: rgb(156 163 175);
-    }
 
     .great-vibes-regular {
         font-size: xxx-large;

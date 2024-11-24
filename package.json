@@ -33,8 +33,7 @@
 	},
 	"dependencies": {
 		"@tailwindcss/forms": "^0.5.9",
-		"flowbite": "^2.5.2",
-		"flowbite-svelte": "^0.47.3"
+		"daisyui": "^4.12.14"
 	},
 	"packageManager": "yarn@4.5.1"
 }

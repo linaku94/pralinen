@@ -1,32 +1,38 @@
 <script>
-import { Carousel } from 'flowbite-svelte';
-import gruppenfoto from '$lib/assets/2023/gruppenfoto.png';
+import gruppenfoto23 from '$lib/assets/2023/gruppenfoto.png';
+import makingof2 from '$lib/assets/2023/makingof2.png';
+import makingof from '$lib/assets/2023/makingof.png';
+import gruppenfoto22 from '$lib/assets/2022/gruppenfoto.png';
 import schokolade from '$lib/assets/2023/schokolade.png';
 
-let images = [
+let pictures = [
 	{
 		alt: 'gruppenfoto',
-		src: gruppenfoto,
-		title: 'gruppenfoto'
+		src: gruppenfoto23,
 	},
 	{
 		alt: 'schokolade',
 		src: schokolade,
-		title: 'schokolade'
+	},
+	{
+		alt: 'gruppenfoto',
+		src: gruppenfoto22
 	}
+	// {
+	// 	alt: 'makingof',
+	// 	src: makingof,
+	// },
+	// {
+	// 	alt: 'makingof',
+	// 	src: makingof2,
+	// }
 ];
 </script>
 
-<!--<div class="container mx-auto flex justify-between items-center pb-10">-->
-<!--	{#each pictures as picture}-->
-<!--	<img class="image_band_class" alt="pralinen bild 1" src={picture}/>-->
-<!--	{/each}-->
-<!--</div>-->
-
-<div class="max-w-4xl justify-center flex flex-wrap">
-	<Carousel {images} let:Controls>
-		<Controls />
-	</Carousel>
+<div class="left-0 flex justify-center rounded-box w-full">
+	{#each pictures as picture}
+	<img class="image_band_class" alt={picture.alt} src={picture.src}/>
+	{/each}
 </div>
 
 <style>
@@ -45,4 +51,22 @@ let images = [
       transform: scale(1.1);
       z-index: 1000;
   }
+
+  /* CSS Code */
+  .swiper-wrapper {
+      width: 100%;
+      height: max-content !important;
+      padding-bottom: 64px !important;
+      -webkit-transition-timing-function: linear !important;
+      transition-timing-function: linear !important;
+      position: relative;
+  }
+  .swiper-pagination-bullet {
+      background: #4F46E5;
+  }
+  .swiper-pagination-bullet-active {
+      background: #4F46E5 !important;
+  }
+
+
 </style>

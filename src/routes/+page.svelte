@@ -1,20 +1,20 @@
 <script>
-import PictureBand from '../components/PictureBand.svelte';
+	import PictureBand from '../components/PictureBand.svelte';
 </script>
 
-<main>
-	<div class="text-lg font-bold">
-		<h1 class="great-vibes-regular">Pralinen aus Karlsruhe</h1>
-		<p class="regular-text">
-			Hi, <br />
-			Wir sind Chrissi, Isi und Lina <br />
-			Wir lieben es Pralinen zu backen und unseren Liebsten eine Freude damit zu machen &#128150<br />
-			Auf unserer Seite findet ihr unsere aktuelle Kollektion, sowie Sammlungen aus früheren Jahren.<br />
-			Viel Spass beim Verkosten! Lasst uns gerne Feedback da!
-		</p>
-<!--		<PictureBand/>-->
-	</div>
-</main>
+
+<div class="text-lg font-bold">
+	<h1 class="great-vibes-regular">Pralinen aus Karlsruhe</h1>
+	<p class="regular-text">
+		Hi, <br />
+		Wir sind Chrissi, Isi und Lina <br />
+		Wir lieben es Pralinen zu backen und unseren Liebsten eine Freude damit zu machen &#128150<br />
+		Auf unserer Seite findet ihr unsere aktuelle Kollektion, sowie Sammlungen aus früheren Jahren.<br />
+		Viel Spass beim Verkosten! Lasst uns gerne Feedback da!
+	</p>
+	<PictureBand />
+</div>
+
 
 <style>
     .great-vibes-regular {
