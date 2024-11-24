@@ -4,14 +4,14 @@
 	let { children } = $props();
 </script>
 
-<nav class="bg-chocolate-light text-chocolate-dark p-10">
+<nav class="bg-chocolate-light text-chocolate-dark p-10 dark:bg-chocolate dark:text-chocolate-white">
 	<div class="container mx-auto flex justify-between items-center">
 		<div class="text-lg font-bold">
-			<a href="/" class="great-vibes-regular hover:text-chocolate-white">Pralinen aus Karlsruhe</a>
+			<a href="/" class="great-vibes-regular hover:text-chocolate-white dark:hover:text-chocolate-light">Pralinen aus Karlsruhe</a>
 		</div>
 		<ul class="flex space-x-4">
-			<li><a href="/pralinen" class="hover:text-chocolate-white">Pralinen 2024</a></li>
-			<li><a href="/umfrage" class="hover:text-chocolate-white">Umfrage</a></li>
+			<li><a href="/pralinen" class="hover:text-chocolate-white dark:hover:text-chocolate-light">Pralinen 2024</a></li>
+			<li><a href="/umfrage" class="hover:text-chocolate-white dark:hover:text-chocolate-light">Umfrage</a></li>
 			<li>
 				<details>
 					<summary class="hover:text-chocolate-white">Kollektionen</summary>
@@ -26,7 +26,7 @@
 	</div>
 </nav>
 
-<main class="mb-auto h-screen bg-chocolate-white text-chocolate-dark">
+<main class="mb-auto max-h-max bg-chocolate-white text-chocolate-dark dark:bg-chocolate-dark dark:text-chocolate-white">
 {@render children()}
 </main>
 

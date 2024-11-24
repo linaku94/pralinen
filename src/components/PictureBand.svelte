@@ -7,12 +7,12 @@ import schokolade from '$lib/assets/2023/schokolade.png';
 
 let pictures = [
 	{
-		alt: 'gruppenfoto',
-		src: gruppenfoto23,
-	},
-	{
 		alt: 'schokolade',
 		src: schokolade,
+	},
+	{
+		alt: 'gruppenfoto',
+		src: gruppenfoto23,
 	},
 	{
 		alt: 'gruppenfoto',
@@ -51,22 +51,5 @@ let pictures = [
       transform: scale(1.1);
       z-index: 1000;
   }
-
-  /* CSS Code */
-  .swiper-wrapper {
-      width: 100%;
-      height: max-content !important;
-      padding-bottom: 64px !important;
-      -webkit-transition-timing-function: linear !important;
-      transition-timing-function: linear !important;
-      position: relative;
-  }
-  .swiper-pagination-bullet {
-      background: #4F46E5;
-  }
-  .swiper-pagination-bullet-active {
-      background: #4F46E5 !important;
-  }
-
 
 </style>

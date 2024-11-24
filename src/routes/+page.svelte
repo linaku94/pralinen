@@ -12,7 +12,9 @@
 		Auf unserer Seite findet ihr unsere aktuelle Kollektion, sowie Sammlungen aus früheren Jahren.<br />
 		Viel Spass beim Verkosten! Lasst uns gerne Feedback da!
 	</p>
-	<PictureBand />
+	<div class="pb-20">
+		<PictureBand />
+	</div>
 </div>
 
 

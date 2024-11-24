@@ -13,3 +13,11 @@
     font-weight: 300;
     font-style: normal;
 }
+
+.hover-zoom:hover {
+    transition: all;
+    transition-duration: 500ms;
+    cursor: pointer;
+    transform: scale(1.1);
+    z-index: 1000;
+}
