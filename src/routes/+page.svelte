@@ -1,5 +1,5 @@
 <script>
-import PictureBand from './PictureBand.svelte';
+import PictureBand from '../components/PictureBand.svelte';
 </script>
 
 <main>

@@ -1,5 +1,5 @@
 <script>
-	import FeedbackForm from '../FeedbackForm.svelte';
+	import FeedbackForm from '../../components/FeedbackForm.svelte';
 </script>
 
 <div class="text-lg font-bold">

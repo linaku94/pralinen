@@ -1,5 +1,5 @@
 <script>
-	import Praline from '../Praline.svelte';
+	import Praline from '../../components/Praline.svelte';
 	import Himbeer from '$lib/assets/2023/himbeer.png'
 	import Zitrone from '$lib/assets/2023/zitrone.png'
 	import Karamell from '$lib/assets/2023/karamell.png'

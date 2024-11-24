@@ -5,7 +5,7 @@
 	import Mango from '$lib/assets/2021/mango.png'
 	import Eierlikoer from '$lib/assets/2021/eierlikoer.png'
 	import Kokos from '$lib/assets/2021/kokos.png'
-	import Praline from '../../Praline.svelte';
+	import Praline from '../../../components/Praline.svelte';
 </script>
 
 <div class="text-lg font-bold">
