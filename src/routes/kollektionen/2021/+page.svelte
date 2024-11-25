@@ -11,7 +11,7 @@
 <div class="text-lg font-bold">
 	<h1 class="great-vibes-regular">Kollektion 2021</h1>
 </div>
-<div class="px-20 py-20 flex flex-wrap gap-4 justify-center">
+<div class="px-20 py-20 flex flex-col items-center ">
 		<Praline picture={Himbeer} name='Himbeer' description='Unser zeitloser Superstar' />
 		<Praline picture={Zitrone} name='Zitrone' description='Goldene Zitrone, spritzig und frisch' />
 		<Praline picture={Karamell} name='Karamell' description='Ein Traum aus Karamell und Meersalz' />

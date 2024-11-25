@@ -2,7 +2,7 @@
 	const sorten = ['Karamell', 'Mango', 'Eierlikoer', 'Zitrone', 'Kokos', 'Himbeer'];
 	const auswahltext = 'Waehle eine Pralinensorte aus'
 </script>
-<div class="px-20 py-20">
+<div class="pb-5 pt-10">
 	<form class="max-w-sm mx-auto text:chocolate-dark">
 		<label for="leckerste-praline" class="block mb-2 text-sm font-medium">Welche Praline hat dir am
 			besten geschmeckt?</label>

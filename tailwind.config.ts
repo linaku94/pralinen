@@ -10,9 +10,14 @@ export default {
 			colors: {
 				chocolate: '#6B360F',
 				'chocolate-dark': '#45220A',
-				'chocolate-light': '#945E38',
-				'chocolate-white' : '#EDE6D6',
-				'chocolate-caramel' : '#FFD29A'
+				'chocolate-light': '#d1bc8a',
+				'chocolate-white': '#EDE6D6',
+				'chocolate-caramel': '#FFD29A'
+			},
+			backgroundImage: {
+				'mango': 'url("src/lib/assets/2021/mango.png")',
+				'himbeer' : 'url("src/lib/assets/2021/himbeer.png")',
+				'zitrone' : 'url("src/lib/assets/2021/zitrone.png")'
 			}
 		}
 	},

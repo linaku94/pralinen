@@ -11,6 +11,7 @@
 		</div>
 		<ul class="flex space-x-4">
 			<li><a href="/pralinen" class="hover:text-chocolate-white dark:hover:text-chocolate-light">Pralinen 2024</a></li>
+			<li><a href="/rezensionen" class="hover:text-chocolate-white dark:hover:text-chocolate-light">Rezensionen</a></li>
 			<li><a href="/umfrage" class="hover:text-chocolate-white dark:hover:text-chocolate-light">Umfrage</a></li>
 			<li>
 				<details>
@@ -26,7 +27,7 @@
 	</div>
 </nav>
 
-<main class="mb-auto max-h-max bg-chocolate-white text-chocolate-dark dark:bg-chocolate-dark dark:text-chocolate-white">
+<main class="mb-auto min-h-screen bg-chocolate-white text-chocolate-dark dark:bg-chocolate-dark dark:text-chocolate-white">
 {@render children()}
 </main>
 

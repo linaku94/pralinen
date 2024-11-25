@@ -14,11 +14,4 @@ export let description = 'Lecker Praline mhmmmm'
 </div>
 
 <style>
-	.button-scale:hover {
-      transition: all;
-      transition-duration: 500ms;
-      cursor: pointer;
-      transform: scale(1.1);
-      z-index: 1000;
-	}
 </style>

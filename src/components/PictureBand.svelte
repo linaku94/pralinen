@@ -31,7 +31,7 @@ let pictures = [
 
 <div class="left-0 flex justify-center rounded-box w-full">
 	{#each pictures as picture}
-	<img class="image_band_class" alt={picture.alt} src={picture.src}/>
+	<img class="image_band_class hover-zoom" alt={picture.alt} src={picture.src}/>
 	{/each}
 </div>
 
@@ -40,15 +40,8 @@ let pictures = [
 			position: relative;
 			width: auto;
 			height: 300px;
-	}
+  }
   .image_band_class:hover {
-      position: relative;
-      width: auto;
-      height: 300px;
-			transition: all;
-			transition-duration: 500ms;
-			cursor: pointer;
-      transform: scale(1.1);
       z-index: 1000;
   }
 
