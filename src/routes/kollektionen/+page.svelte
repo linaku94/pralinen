@@ -1,9 +1,13 @@
+<script>
+	import CollectionOverview from '../../components/CollectionOverview.svelte';
+</script>
+
 <div class="text-lg font-bold">
-	<h1 class="great-vibes-regular">Vergangene Kollektionen</h1>
-	<div class="flex justify-center gap-14">
-		<a class="great-vibes-regular" href="/kollektionen/2021">2021</a>
-		<a class="great-vibes-regular" href="/kollektionen/2022">2022</a>
-		<a class="great-vibes-regular" href="/kollektionen/2023">2023</a>
+	<h1 class="great-vibes-regular p-5">Vergangene Kollektionen</h1>
+	<div class="flex justify-center flex-row p-20 gap-32">
+		<CollectionOverview year="2021" bgvalue="bg-himbeer"/>
+		<CollectionOverview year="2022" bgvalue="bg-zitrone22"/>
+		<CollectionOverview year="2023" bgvalue="bg-karamell23"/>
 	</div>
 </div>
 

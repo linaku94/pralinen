@@ -15,9 +15,11 @@ export default {
 				'chocolate-caramel': '#FFD29A'
 			},
 			backgroundImage: {
-				'mango': 'url("src/lib/assets/2021/mango.png")',
-				'himbeer' : 'url("src/lib/assets/2021/himbeer.png")',
-				'zitrone' : 'url("src/lib/assets/2021/zitrone.png")'
+				'mango': 'url($lib/assets/2021/mango.png)',
+				'himbeer' : 'url($lib/assets/2021/himbeer.png)',
+				'zitrone' : 'url($lib/assets/2021/zitrone.png)',
+				'karamell23' : 'url($lib/assets/2023/karamell.png)',
+				'zitrone22' : 'url($lib/assets/2022/zitrone.png)',
 			}
 		}
 	},
