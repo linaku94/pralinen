@@ -28,3 +28,5 @@ node_modules
 
 # svelte
 .svelte-kit
+
+public
