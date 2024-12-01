@@ -553,6 +553,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sveltejs/adapter-static@npm:^3.0.6":
+  version: 3.0.6
+  resolution: "@sveltejs/adapter-static@npm:3.0.6"
+  peerDependencies:
+    "@sveltejs/kit": ^2.0.0
+  checksum: 10c0/39fa8be56a9acf468d25d1d7608f3b89541a471afd6021ba627bc228e929cbe1f0c1c6c75e9e1da27e0873c4cd38d189833f4966b708780dae4f3e5e2faf7833
+  languageName: node
+  linkType: hard
+
 "@sveltejs/kit@npm:^2.0.0":
   version: 2.8.2
   resolution: "@sveltejs/kit@npm:2.8.2"
@@ -2657,6 +2666,7 @@ __metadata:
   resolution: "pralinen-app@workspace:."
   dependencies:
     "@sveltejs/adapter-auto": "npm:^3.0.0"
+    "@sveltejs/adapter-static": "npm:^3.0.6"
     "@sveltejs/kit": "npm:^2.0.0"
     "@sveltejs/vite-plugin-svelte": "npm:^4.0.0"
     "@tailwindcss/forms": "npm:^0.5.9"
