@@ -4,6 +4,7 @@
 	import SubmitButton from './SubmitButton.svelte';
 	import { addFeedback } from '$lib/firebase.js';
 	import PasswordField from './PasswordField.svelte';
+	import * as crypto from 'crypto'
 
 	const sorten = ['Karamell', 'Mango', 'Eierlikoer', 'Zitrone', 'Kokos', 'Himbeer'];
 
@@ -20,11 +21,10 @@
 				bestePraline: bestePraline,
 				schlechtestePraline: schlechtestePraline,
 				freitext: freitext,
+				password: crypto.createHash('sha256').update(password)
 			}
 
-			console.log(feedback, password)
-
-			await addFeedback(feedback, password);
+			await addFeedback(feedback);
 
 			successMessage = 'Vielen Dank :)';
 			bestePraline = '';
@@ -39,7 +39,7 @@
 	};
 
 </script>
-<div class="pb-5 pt-10">
+<div class="pb-5 pt-10 px-5">
 	<form on:submit={onSubmit} class="max-w-sm mx-auto text:chocolate-dark">
 		<SelectField description="Welche Praline hat dir am besten geschmeckt?" placeholder="Waehle eine Pralinensorte aus"
 								 options={sorten} label="leckerste-praline" bind:selected={bestePraline} />

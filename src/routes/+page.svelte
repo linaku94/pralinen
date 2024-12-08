@@ -2,8 +2,8 @@
 </script>
 
 
-<div class="text-lg font-bold bg-mango bg-cover min-h-screen">
-	<h1 class="great-vibes-regular dark:text-chocolate-dark">Pralinen aus Karlsruhe</h1>
+<div class="text-lg font-bold bg-mango bg-cover bg-center min-h-screen">
+	<h1 class="great-vibes-regular dark:text-chocolate-dark p-10">Pralinen aus Karlsruhe</h1>
 	<p class="regular-text dark:text-chocolate-dark">
 		Hi, <br />
 		Wir sind Chrissi, Isi und Lina <br />
@@ -18,14 +18,11 @@
 
 <style>
     .great-vibes-regular {
-        padding-top: 100px;
         text-align: center;
-        font-size: xxx-large;
+        font-size: xx-large;
     }
 
     .regular-text {
-        padding-top: 50px;
-        padding-bottom: 100px;
         text-align: center;
         font-size: large;
     }

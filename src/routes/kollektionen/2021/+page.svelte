@@ -8,11 +8,11 @@
 	import Praline from '../../../components/Praline.svelte';
 </script>
 
-<div class="bg-mango bg-cover">
+<div class="bg-mango bg-cover bg-center">
 	<div class="text-lg font-bold">
-		<h1 class="great-vibes-regular">Kollektion 2021</h1>
+		<h1 class="great-vibes-regular pt-10">Kollektion 2021</h1>
 	</div>
-	<div class="px-20 py-20 flex flex-col items-center">
+	<div class="px-10 py-10 flex flex-col items-center">
 		<Praline picture={Himbeer} name='Himbeer' description='Unser zeitloser Superstar' />
 		<Praline picture={Zitrone} name='Zitrone' description='Goldene Zitrone, spritzig und frisch' />
 		<Praline picture={Karamell} name='Karamell' description='Ein Traum aus Karamell und Meersalz' />
@@ -24,8 +24,7 @@
 
 <style>
     .great-vibes-regular {
-        padding-top: 100px;
         text-align: center;
-        font-size: xxx-large;
+        font-size: xx-large;
     }
 </style>
