@@ -1,5 +1,5 @@
 <script>
-	export let description='Abschicken';
+	let { description = 'Abschicken' } = $props();
 </script>
 
 <div class="py-5">
