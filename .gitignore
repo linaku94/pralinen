@@ -23,6 +23,8 @@ vite.config.ts.timestamp-*
 # IDE
 .idea
 
+src/lib/firebase.js
+
 # node
 node_modules
 
