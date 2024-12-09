@@ -4,16 +4,18 @@
 	import SubmitButton from './SubmitButton.svelte';
 	import { addFeedback } from '$lib/firebase.js';
 	import PasswordField from './PasswordField.svelte';
-	import * as crypto from 'crypto'
+	import Modal from './Modal.svelte';
 
 	const sorten = ['Karamell', 'Mango', 'Eierlikoer', 'Zitrone', 'Kokos', 'Himbeer'];
 
-	let bestePraline = '';
-	let schlechtestePraline = '';
-	let freitext = '';
-	let successMessage = '';
-	let errorMessage = '';
-	let password = '';
+	let showModal = $state(false);
+
+	let bestePraline = $state('');
+	let schlechtestePraline = $state('');
+	let freitext = $state('');
+	let password = $state('');
+
+	let modalMessage = $state('');
 
 	const onSubmit = async () => {
 		try {
@@ -21,26 +23,26 @@
 				bestePraline: bestePraline,
 				schlechtestePraline: schlechtestePraline,
 				freitext: freitext,
-				password: crypto.createHash('sha256').update(password)
+				password: password
 			}
 
 			await addFeedback(feedback);
 
-			successMessage = 'Vielen Dank :)';
 			bestePraline = '';
 			schlechtestePraline = '';
 			freitext = '';
 
-		} catch (error) {
-			console.error('failed to save data to firestore', error);
-			errorMessage = 'Ups, da ist etwas schiefgelaufen. Bitte versuche es spaeter nochmal';
-			successMessage = '';
+			modalMessage = 'Danke fuer deine Nachricht. Frohe Weihnachten :)'
+
+		} catch {
+			modalMessage = 'Ups, da ist etwas schiefgelaufen. Hast du das richtige Passwort eingegeben? Bitte versuche es spaeter nochmal.';
 		}
+		showModal = true;
 	};
 
 </script>
 <div class="pb-5 pt-10 px-5">
-	<form on:submit={onSubmit} class="max-w-sm mx-auto text:chocolate-dark">
+	<form onsubmit={onSubmit} class="max-w-sm mx-auto text:chocolate-dark">
 		<SelectField description="Welche Praline hat dir am besten geschmeckt?" placeholder="Waehle eine Pralinensorte aus"
 								 options={sorten} label="leckerste-praline" bind:selected={bestePraline} />
 		<SelectField description="Welche Praline koennte noch besser werden?" placeholder="Waehle eine Pralinensorte aus"
@@ -49,4 +51,5 @@
 		<PasswordField description="Geheimes Pralinen Passwort" label="passwort" bind:password={password} />
 		<SubmitButton description="Abschicken" />
 	</form>
+	<Modal  bind:showModal message={modalMessage}/>
 </div>
