@@ -1,11 +1,11 @@
 <script>
 	import Praline from '../../components/Praline.svelte';
-	import Himbeer from '$lib/assets/2023/himbeer.png';
-	import Zitrone from '$lib/assets/2023/zitrone.png';
+	import Himbeer from '$lib/assets/2023/himbeer_small.png';
+	import Zitrone from '$lib/assets/2023/zitrone_small.png';
 	import Karamell from '$lib/assets/2023/karamell.png';
-	import Mango from '$lib/assets/2023/mango.png';
-	import Eierlikoer from '$lib/assets/2023/eierlikoer.png';
-	import Kokos from '$lib/assets/2023/kokos.png';
+	import Mango from '$lib/assets/2023/mango_small.png';
+	import Eierlikoer from '$lib/assets/2023/eierlikoer_small.png';
+	import Kokos from '$lib/assets/2023/kokos_small.png';
 </script>
 <div class="bg-karamell23 bg-cover bg-center bg-opacity-90">
 	<div class="bg-white bg-opacity-30 flex flex-col fit-content">

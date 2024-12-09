@@ -1,10 +1,10 @@
 <script>
-	import Himbeer from '$lib/assets/2022/himbeer.png';
+	import Himbeer from '$lib/assets/2022/himbeer_small.png';
 	import Zitrone from '$lib/assets/2022/zitrone.png';
-	import Karamell from '$lib/assets/2022/karamell.png';
-	import Mango from '$lib/assets/2022/mango.png';
-	import Eierlikoer from '$lib/assets/2022/eierlikoer.png';
-	import Kokos from '$lib/assets/2022/kokos.png';
+	import Karamell from '$lib/assets/2022/karamell_small.png';
+	import Mango from '$lib/assets/2022/mango_small.png';
+	import Eierlikoer from '$lib/assets/2022/eierlikoer_small.png';
+	import Kokos from '$lib/assets/2022/kokos_small.png';
 	import Praline from '../../../components/Praline.svelte';
 </script>
 
