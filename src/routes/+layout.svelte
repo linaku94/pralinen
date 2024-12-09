@@ -3,7 +3,7 @@
 	let { children } = $props();
 </script>
 
-<nav class="bg-chocolate-light text-chocolate-dark p-10 dark:bg-chocolate dark:text-chocolate-white">
+<nav class="bg-chocolate-light text-chocolate-dark p-5 dark:bg-chocolate dark:text-chocolate-white">
 	<div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
 		<div class="text-lg font-bold py-5">
 			<a href="/" class="great-vibes-regular hover:text-chocolate-white dark:hover:text-chocolate-light pb-3">Pralinen aus Karlsruhe</a>
