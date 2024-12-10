@@ -3,7 +3,6 @@
 	import TextField from './TextField.svelte';
 	import SubmitButton from './SubmitButton.svelte';
 	import { addFeedback } from '$lib/firebase.js';
-	import PasswordField from './PasswordField.svelte';
 	import Modal from './Modal.svelte';
 
 	const sorten = ['Karamell', 'Mango', 'Eierlikör', 'Zitrone', 'Kokos', 'Himbeer'];
@@ -47,8 +46,8 @@
 								 options={sorten} label="leckerste-praline" bind:selected={bestePraline} />
 		<SelectField description="Welche Praline könnte noch besser werden?" placeholder="Wähle eine Pralinensorte aus"
 								 options={sorten} label="schlechteste-praline" bind:selected={schlechtestePraline} />
-		<TextField description="Was ich euch noch sagen moechte" label="freitextfeld" bind:inputText={freitext} />
-		<PasswordField description="Geheimes Pralinen Passwort" label="passwort" bind:password={password} />
+		<TextField description="Was ich euch noch sagen möchte" label="freitextfeld" bind:inputText={freitext} />
+		<TextField description="Geheimes Pralinen Passwort" label="passwort" bind:inputText={password} />
 		<SubmitButton description="Abschicken" />
 	</form>
 	<Modal  bind:showModal message={modalMessage}/>
