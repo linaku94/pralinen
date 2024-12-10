@@ -4,7 +4,7 @@
 
 
 <div class="flex flex-col items-center p-10">
-	<h1 class="great-vibes-regular">Philosophie</h1>
+	<h1 class="great-vibes-regular">Making Of</h1>
 <!--	<img src={schokolade} alt="making-of" title="making-of" class="w-1/4">-->
 </div>
 

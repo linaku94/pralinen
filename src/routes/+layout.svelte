@@ -13,16 +13,6 @@
 			<li><a href="/rezensionen" class="hover:text-chocolate-white dark:hover:text-chocolate-light">Rezensionen</a></li>
 			<li><a href="/umfrage" class="hover:text-chocolate-white dark:hover:text-chocolate-light">Umfrage</a></li>
 			<li><a href="/kollektionen" class="hover:text-chocolate-white dark:hover:text-chocolate-light">Kollektionen</a></li>
-			<li>
-<!--				<details>-->
-<!--					<summary class="hover:text-chocolate-white">Kollektionen</summary>-->
-<!--					<ul class="rounded-t-none p-2 nav-element">-->
-<!--						<li><a href="/kollektionen/2023" class="nav-element">2023</a></li>-->
-<!--						<li><a href="/kollektionen/2022" class="nav-element">2022</a></li>-->
-<!--						<li><a href="/kollektionen/2021" class="nav-element">2021</a></li>-->
-<!--					</ul>-->
-<!--				</details>-->
-			</li>
 		</ul>
 	</div>
 </nav>
@@ -31,13 +21,13 @@
 {@render children()}
 </main>
 
-<footer class="bg-chocolate-light dark:bg-chocolate text-chocolate-dark dark:text-white w-full p-2">
+<footer class="bg-chocolate-light dark:bg-chocolate text-chocolate-dark dark:text-white w-full p-1">
 	<div class="w-full mx-auto max-w-screen-xl p-4 flex flex-row justify-between items-center">
 		<span>
 		<a href="/" class="hover:text-chocolate-white">Pralinen aus Karlsruhe</a>
 		</span>
 		<span>
-			<a href="/philosophie" class="hover:text-chocolate-white">Philosophie</a>
+			<a href="/makingof" class="hover:text-chocolate-white">Making of</a>
 		</span>
 	</div>
 </footer>
