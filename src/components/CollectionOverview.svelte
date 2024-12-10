@@ -4,7 +4,7 @@
 </script>
 <a href="/kollektionen/{year}">
 	<div
-		class="{bgvalue} rounded-lg bg-cover p-44 flex flex-col items-center hover-zoom">
+		class="{bgvalue} rounded-lg bg-cover bg-center p-44 flex flex-col items-center hover-zoom">
 		<h1 class="great-vibes-regular customtext text-white">{year}</h1>
 	</div>
 </a>
