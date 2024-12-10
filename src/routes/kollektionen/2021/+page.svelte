@@ -16,9 +16,9 @@
 		<Praline picture={Himbeer} name='Himbeer' description='Unser zeitloser Superstar' />
 		<Praline picture={Zitrone} name='Zitrone' description='Goldene Zitrone, spritzig und frisch' />
 		<Praline picture={Karamell} name='Karamell' description='Ein Traum aus Karamell und Meersalz' />
-		<Praline picture={Eierlikoer} name='Eierlikoer' description='Genuss mit Schuss' />
+		<Praline picture={Eierlikoer} name='Eierlikör' description='Genuss mit Schuss' />
 		<Praline picture={Mango} name='Mango' description='Tango Mango' />
-		<Praline picture={Kokos} name='Kokos' description='Cremiges Kokos umhuellt von zarten Flocken' />
+		<Praline picture={Kokos} name='Kokos' description='Cremiges Kokos umhüllt von zarten Flocken' />
 	</div>
 </div>
 

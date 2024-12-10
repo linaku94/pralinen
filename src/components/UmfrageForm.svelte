@@ -6,7 +6,7 @@
 	import PasswordField from './PasswordField.svelte';
 	import Modal from './Modal.svelte';
 
-	const sorten = ['Karamell', 'Mango', 'Eierlikoer', 'Zitrone', 'Kokos', 'Himbeer'];
+	const sorten = ['Karamell', 'Mango', 'Eierlikör', 'Zitrone', 'Kokos', 'Himbeer'];
 
 	let showModal = $state(false);
 
@@ -32,10 +32,10 @@
 			schlechtestePraline = '';
 			freitext = '';
 
-			modalMessage = 'Danke fuer deine Nachricht. Frohe Weihnachten :)'
+			modalMessage = 'Danke für deine Nachricht. Frohe Weihnachten :)'
 
 		} catch {
-			modalMessage = 'Ups, da ist etwas schiefgelaufen. Hast du das richtige Passwort eingegeben? Bitte versuche es spaeter nochmal.';
+			modalMessage = 'Ups, da ist etwas schiefgelaufen. Hast du das richtige Passwort eingegeben? Bitte versuche es später nochmal.';
 		}
 		showModal = true;
 	};
@@ -43,9 +43,9 @@
 </script>
 <div class="pb-5 pt-10 px-5">
 	<form onsubmit={onSubmit} class="max-w-sm mx-auto text:chocolate-dark">
-		<SelectField description="Welche Praline hat dir am besten geschmeckt?" placeholder="Waehle eine Pralinensorte aus"
+		<SelectField description="Welche Praline hat dir am besten geschmeckt?" placeholder="Wähle eine Pralinensorte aus"
 								 options={sorten} label="leckerste-praline" bind:selected={bestePraline} />
-		<SelectField description="Welche Praline koennte noch besser werden?" placeholder="Waehle eine Pralinensorte aus"
+		<SelectField description="Welche Praline könnte noch besser werden?" placeholder="Wähle eine Pralinensorte aus"
 								 options={sorten} label="schlechteste-praline" bind:selected={schlechtestePraline} />
 		<TextField description="Was ich euch noch sagen moechte" label="freitextfeld" bind:inputText={freitext} />
 		<PasswordField description="Geheimes Pralinen Passwort" label="passwort" bind:password={password} />
