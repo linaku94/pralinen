@@ -1,5 +1,5 @@
 <script>
-	import UmfrageForm from '../../components/UmfrageForm.svelte';
+	import UmfrageForm from '../../components/FormComponents/UmfrageForm.svelte';
 </script>
 
 <div class="bg-zitrone bg-cover bg-center min-h-screen items-center flex flex-col pt-20">

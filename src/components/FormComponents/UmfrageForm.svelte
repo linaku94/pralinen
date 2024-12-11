@@ -3,7 +3,7 @@
 	import TextField from './TextField.svelte';
 	import SubmitButton from './SubmitButton.svelte';
 	import { addFeedback } from '$lib/firebase.js';
-	import Modal from './Modal.svelte';
+	import Modal from '../Modal.svelte';
 
 	const sorten = ['Karamell', 'Mango', 'Eierlikör', 'Zitrone', 'Kokos', 'Himbeer'];
 
