@@ -6,15 +6,16 @@
 </script>
 
 
-<div class="flex flex-col items-center p-5 gap-20">
-	<h1 class="great-vibes-regular pb-5">Making Of</h1>
-		<RoundedImageWithDescription image={schokolade} alt={'schokolade'} imagePosition={'left'} description="schokolade" />
-		<RoundedImageWithDescription image={gruppenfoto_23} alt={'gruppenfoto 23'} imagePosition={'right'} description="gruppenfoto 23" />
-		<RoundedImageWithDescription image={makingof_23} alt={'makingof 23'} imagePosition={'left'} description="making of" />
+<div class="flex flex-col items-center justify-center gap-16 md:gap-32">
+	<h1 class="great-vibes-regular pt-5">Making Of</h1>
+		<RoundedImageWithDescription image={schokolade} alt={'schokolade'} imagePosition={'left'} description="Hier beginnt alles mit 5kg feinster Schokolade..." />
+		<RoundedImageWithDescription image={gruppenfoto_23} alt={'gruppenfoto 23'} imagePosition={'right'} description="... die zu köstlichen Füllungen verarbeitet wird ..." />
+		<RoundedImageWithDescription image={makingof_23} alt={'makingof 23'} imagePosition={'left'} description="... die Pralinen werden befüllt, versiegelt ..." />
+		<RoundedImageWithDescription image={makingof_23} alt={'makingof 23'} imagePosition={'left'} description="... ummantelt und verziert ..." />
 </div>
 
 <style>
 	.great-vibes-regular {
-			font-size: xxx-large;
+			font-size: xx-large;
 	}
 </style>
