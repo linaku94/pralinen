@@ -35,7 +35,6 @@
 	"dependencies": {
 		"@sveltejs/adapter-static": "^3.0.6",
 		"@tailwindcss/forms": "^0.5.9",
-		"dotenv": "^16.4.5",
 		"firebase": "^11.0.2"
 	},
 	"packageManager": "yarn@4.5.1"
