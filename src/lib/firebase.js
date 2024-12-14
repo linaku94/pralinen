@@ -1,8 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { addDoc, collection, getFirestore } from 'firebase/firestore';
 
-console.log(import.meta.env) // remove this after you've confirmed it is working
-
 const env = import.meta.env
 
 const firebaseConfig = {
