@@ -34,3 +34,5 @@ public
 .firebase
 
 .env
+
+.yarn/install-state.gz
