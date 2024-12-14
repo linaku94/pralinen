@@ -3,7 +3,7 @@
 </script>
 
 <div class="text-lg font-bold">
-	<h1 class="great-vibes-regular pt-10">Vergangene Kollektionen</h1>
+	<h1 class="great-vibes-regular text-center text-2xl pt-10">Vergangene Kollektionen</h1>
 	<div class="flex justify-center md:flex-row flex-col p-7 md:gap-32 gap-16">
 		<CollectionOverview year="2021" bgvalue="bg-himbeer"/>
 		<CollectionOverview year="2022" bgvalue="bg-zitrone22"/>
@@ -12,8 +12,4 @@
 </div>
 
 <style>
-    .great-vibes-regular {
-        text-align: center;
-        font-size: xx-large;
-    }
 </style>

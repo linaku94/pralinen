@@ -3,8 +3,8 @@
 
 
 <div class="text-lg font-bold bg-mango bg-cover bg-center min-h-screen">
-	<h1 class="great-vibes-regular dark:text-chocolate-dark p-10">Pralinen aus Karlsruhe</h1>
-	<p class="regular-text dark:text-chocolate-dark px-5">
+	<h1 class="great-vibes-regular text-center text-2xl dark:text-chocolate-dark p-10">Pralinen aus Karlsruhe</h1>
+	<p class="regular-text text-center dark:text-chocolate-dark px-5">
 		Hi, <br />
 		Wir sind Chrissi, Isi und Lina <br />
 		Wir lieben es Pralinen herzustellen und unseren Liebsten damit eine Freude zu machen &#128150<br />
@@ -20,14 +20,5 @@
 
 
 <style>
-    .great-vibes-regular {
-        text-align: center;
-        font-size: xx-large;
-    }
-
-    .regular-text {
-        text-align: center;
-        font-size: large;
-    }
 </style>
 

@@ -6,7 +6,7 @@
 <nav class="bg-chocolate-light text-chocolate-dark p-5 ">
 	<div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
 		<div class="text-lg font-bold py-5">
-			<a href="/" class="great-vibes-regular hover:text-chocolate-white pb-3">Pralinen aus Karlsruhe</a>
+			<a href="/" class="great-vibes-regular text-3xl hover:text-chocolate-white pb-3">Pralinen aus Karlsruhe</a>
 		</div>
 		<ul class="flex space-x-4">
 			<li><a href="/pralinen" class="hover:text-chocolate-white">2024</a></li>
@@ -33,9 +33,4 @@
 </footer>
 
 <style>
-
-    .great-vibes-regular {
-        font-size: xx-large;
-    }
-
 </style>

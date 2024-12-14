@@ -10,7 +10,7 @@
 
 <div class="bg-mango bg-cover bg-center">
 	<div class="text-lg font-bold">
-		<h1 class="great-vibes-regular pt-10">Kollektion 2021</h1>
+		<h1 class="great-vibes-regular text-center text-2xl pt-10">Kollektion 2021</h1>
 	</div>
 	<div class="px-10 py-10 flex flex-col items-center">
 		<Praline picture={Himbeer} name='Himbeer' description='Unser zeitloser Superstar' />
@@ -23,8 +23,4 @@
 </div>
 
 <style>
-    .great-vibes-regular {
-        text-align: center;
-        font-size: xx-large;
-    }
 </style>

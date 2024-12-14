@@ -7,7 +7,7 @@
 
 
 <div class="flex flex-col items-center justify-center gap-16 md:gap-32">
-	<h1 class="great-vibes-regular pt-5">Making Of</h1>
+	<h1 class="great-vibes-regular text-2xl pt-5">Making Of</h1>
 		<RoundedImageWithDescription image={schokolade} alt={'schokolade'} imagePosition={'left'} description="Hier beginnt alles mit 5kg feinster Schokolade..." />
 		<RoundedImageWithDescription image={gruppenfoto_23} alt={'gruppenfoto 23'} imagePosition={'right'} description="... die zu köstlichen Füllungen verarbeitet wird ..." />
 		<RoundedImageWithDescription image={makingof_23} alt={'makingof 23'} imagePosition={'left'} description="... die Pralinen werden befüllt, versiegelt ..." />
@@ -15,7 +15,4 @@
 </div>
 
 <style>
-	.great-vibes-regular {
-			font-size: xx-large;
-	}
 </style>
