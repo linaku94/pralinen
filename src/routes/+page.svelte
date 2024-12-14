@@ -7,9 +7,9 @@
 	<p class="regular-text dark:text-chocolate-dark">
 		Hi, <br />
 		Wir sind Chrissi, Isi und Lina <br />
-		Wir lieben es Pralinen herzustellen und unseren Liebsten eine Freude damit zu machen &#128150<br />
+		Wir lieben es Pralinen herzustellen und unseren Liebsten damit eine Freude zu machen &#128150<br />
 		Auf unserer Seite findet ihr unsere aktuelle Kollektion, sowie Sammlungen aus früheren Jahren.<br />
-		Viel Spaß beim Verkosten! Lasst uns gerne eine Nachricht da!<br/>
+		Viel Spaß beim Verkosten! Wir freuen uns über jeden der an der Umfrage teilnimmt.<br/>
 		<br/>
 		<br/>
 		❄️🎄 Frohe Weihnachten 🎄❄️
