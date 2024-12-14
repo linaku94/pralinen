@@ -15,7 +15,7 @@
 	onclick={(e) => { if (e.target === dialog) dialog.close(); }}
 >
 	<div class="p-7 flex flex-col justify-center items-center">
-		<p class="p-5">{message}</p>
+		<p class="p-4">{message}</p>
 		<!-- svelte-ignore a11y_autofocus -->
 		<button autofocus onclick={() => dialog.close()}>schließen</button>
 	</div>

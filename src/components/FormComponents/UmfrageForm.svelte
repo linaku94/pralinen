@@ -5,7 +5,7 @@
 	import { addFeedback } from '$lib/firebase.js';
 	import Modal from '../Modal.svelte';
 
-	const sorten = ['Karamell', 'Mango', 'Eierlikör', 'Zitrone', 'Kokos', 'Himbeer'];
+	const sorten = ['Karamell', 'Kaktus-Eis', 'Dubai', 'Eierlikör', 'Zitrone', 'Kokos', 'Himbeer'];
 
 	let showModal = $state(false);
 
@@ -31,7 +31,7 @@
 			schlechtestePraline = '';
 			freitext = '';
 
-			modalMessage = 'Danke für deine Nachricht. Frohe Weihnachten :)'
+			modalMessage = 'Danke für deine Nachricht. 🎄 Frohe Weihnachten :)'
 
 		} catch {
 			modalMessage = 'Ups, da ist etwas schiefgelaufen. Hast du das richtige Passwort eingegeben? Bitte versuche es später nochmal.';
