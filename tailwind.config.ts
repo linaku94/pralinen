@@ -23,6 +23,4 @@ export default {
 			}
 		}
 	},
-
-	plugins: [forms, daisyui]
 } satisfies Config;
