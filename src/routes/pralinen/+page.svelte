@@ -18,7 +18,7 @@
 			<Praline picture={Zitrone} name='Zitrone' description='Goldene Zitrone, spritzig und frisch' />
 			<Praline picture={Karamell} name='Karamell' description='Ein Traum aus Karamell und Meersalz' />
 			<Praline picture={Eierlikoer} name='Eierlikör' description='Genuss mit Schuss' />
-			<Praline picture={Kaktus} name='Kaktus' description='Unser disjähriges Special - prickelndes Kaktuseis' />
+			<Praline picture={Kaktus} name='Kaktus' description='Unser diesjähriges Special - prickelndes Kaktuseis' />
 			<Praline picture={Kokos} name='Kokos' description='Cremiges Kokos umhüllt von zarten Flocken' />
 		</div>
 
