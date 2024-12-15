@@ -20,6 +20,7 @@ export default {
 				'zitrone' : 'url($lib/assets/2021/zitrone.png)',
 				'karamell23' : 'url($lib/assets/2023/karamell.png)',
 				'zitrone22' : 'url($lib/assets/2022/zitrone.png)',
+				'karlsruhe24' : 'url($lib/assets/2024/karlsruhe_hd.png)',
 			}
 		}
 	},
