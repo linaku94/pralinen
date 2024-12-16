@@ -5,7 +5,7 @@
 	import { addFeedback } from '$lib/firebase.js';
 	import Modal from '../Modal.svelte';
 
-	const sorten = ['Karamell', 'Kaktus-Eis', 'Dubai', 'Eierlikör', 'Zitrone', 'Kokos', 'Himbeer'];
+	const sorten = ['Karamell', 'Kaktus-Eis', 'Karlsruhe', 'Eierlikör', 'Zitrone', 'Kokos', 'Himbeer'];
 
 	let showModal = $state(false);
 
