@@ -1,7 +1,7 @@
 <script>
 	import Himbeer from '$lib/assets/2023/himbeer_small.png';
 	import Zitrone from '$lib/assets/2023/zitrone_small.png';
-	import Karamell from '$lib/assets/2023/karamell.png';
+	import Karamell from '$lib/assets/2023/karamell_medium.png';
 	import Mango from '$lib/assets/2023/mango_small.png';
 	import Eierlikoer from '$lib/assets/2023/eierlikoer_small.png';
 	import Kokos from '$lib/assets/2023/kokos_small.png';

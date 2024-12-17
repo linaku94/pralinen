@@ -1,8 +1,8 @@
 <script>
-	import Himbeer from '$lib/assets/2021/himbeer.png';
-	import Zitrone from '$lib/assets/2021/zitrone.png';
+	import Himbeer from '$lib/assets/2021/himbeer_medium.png';
+	import Zitrone from '$lib/assets/2021/zitrone_medium.png';
 	import Karamell from '$lib/assets/2021/karamell_small.png';
-	import Mango from '$lib/assets/2021/mango.png';
+	import Mango from '$lib/assets/2021/mango_medium.png';
 	import Eierlikoer from '$lib/assets/2021/eierlikoer_small.png';
 	import Kokos from '$lib/assets/2021/kokos_small.png';
 	import Praline from '../../../components/Praline.svelte';
