@@ -13,12 +13,14 @@
 	let schlechtestePraline = $state('');
 	let freitext = $state('');
 	let password = $state('');
+	let name = $state('');
 
 	let modalMessage = $state('');
 
 	const onSubmit = async () => {
 		try {
 			let feedback = {
+				name: name,
 				bestePraline: bestePraline,
 				schlechtestePraline: schlechtestePraline,
 				freitext: freitext,
@@ -42,6 +44,7 @@
 </script>
 <div class="pb-5 pt-10 px-5">
 	<form onsubmit={onSubmit} class="max-w-sm mx-auto text:chocolate-dark">
+		<TextField description="Wie heißt du?" label="name" bind:inputText={name} />
 		<SelectField description="Welche Praline hat dir am besten geschmeckt?" placeholder="Wähle eine Pralinensorte aus"
 								 options={sorten} label="leckerste-praline" bind:selected={bestePraline} />
 		<SelectField description="Welche Praline könnte noch besser werden?" placeholder="Wähle eine Pralinensorte aus"
