@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
-import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore';
 
-const env = import.meta.env
+const env = import.meta.env;
 
 const firebaseConfig = {
 	apiKey: env.VITE_API_KEY,
@@ -19,10 +19,13 @@ const addFeedback = async (feedback) => {
 	try {
 		await addDoc(collection(db, 'pralinen'), { ...feedback, timeStamp: new Date() });
 	} catch (error) {
-		console.log(`Error adding your feedback ${error}. Try again, if it does not work, ask Lina`)
-		throw error
+		console.log(`Error adding your feedback ${error}. Try again, if it does not work, ask Lina`);
+		throw error;
 	}
-
 };
 
-export { db, addFeedback };
+const getFeedback = async () => {
+	return (await getDocs(collection(db, 'pralinen'))).docs.map((doc) => doc.data());
+};
+
+export { db, addFeedback, getFeedback };

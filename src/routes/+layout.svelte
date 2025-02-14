@@ -12,6 +12,7 @@
 			<li><a href="/pralinen" class="hover:text-chocolate-white">2024</a></li>
 			<li><a href="/rezensionen" class="hover:text-chocolate-white">Rezensionen</a></li>
 			<li><a href="/umfrage" class="hover:text-chocolate-white">Umfrage</a></li>
+			<li><a href="/auswertung" class="hover:text-chocolate-white">Auswertung</a></li>
 			<li><a href="/kollektionen" class="hover:text-chocolate-white">Kollektionen</a></li>
 		</ul>
 	</div>
