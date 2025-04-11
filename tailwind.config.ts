@@ -43,12 +43,12 @@ export default {
 			},
 			dark: {
 				primary: colors['orange']['500'],
-				'primary-content': 'white',
+				'primary-content': 'black',
 				secondary: colors['blue']['500'],
 				'surface-100': colors['zinc']['800'],
 				'surface-200': colors['zinc']['900'],
 				'surface-300': colors['zinc']['950'],
-				'surface-content': colors['zinc']['100'],
+				'surface-content': colors['gray']['900'],
 				'color-scheme': 'dark'
 			}
 		}
