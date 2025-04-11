@@ -33,7 +33,8 @@
 	},
 	"dependencies": {
 		"@sveltejs/adapter-static": "^3.0.6",
-		"firebase": "^11.0.2"
+		"firebase": "^11.0.2",
+		"layerchart": "^1.0.8"
 	},
 	"packageManager": "yarn@4.5.1"
 }
