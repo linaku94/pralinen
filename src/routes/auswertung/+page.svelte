@@ -1,6 +1,8 @@
 <script>
 	import { getFeedback } from '$lib/firebase.js';
 	import { onMount } from 'svelte';
+	import type { Feedback } from '$lib/common/types';
+	import { PieChart } from 'layerchart';
 
 	let feedbacks = [];
 	let loading = true;

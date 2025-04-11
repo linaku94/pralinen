@@ -4,8 +4,7 @@
 	import SubmitButton from './SubmitButton.svelte';
 	import { addFeedback } from '$lib/firebase.js';
 	import Modal from '../Modal.svelte';
-
-	const sorten = ['Karamell', 'Kaktus-Eis', 'Karlsruhe', 'Eierlikör', 'Zitrone', 'Kokos', 'Himbeer'];
+	import { pralinenSorten } from '$lib/common/types.ts';
 
 	let showModal = $state(false);
 
@@ -46,9 +45,9 @@
 	<form onsubmit={onSubmit} class="max-w-sm mx-auto text:chocolate-dark">
 		<TextField description="Wie heißt du?" label="name" bind:inputText={name} />
 		<SelectField description="Welche Praline hat dir am besten geschmeckt?" placeholder="Wähle eine Pralinensorte aus"
-								 options={sorten} label="leckerste-praline" bind:selected={bestePraline} />
+								 options={pralinenSorten} label="leckerste-praline" bind:selected={bestePraline} />
 		<SelectField description="Welche Praline könnte noch besser werden?" placeholder="Wähle eine Pralinensorte aus"
-								 options={sorten} label="schlechteste-praline" bind:selected={schlechtestePraline} />
+								 options={pralinenSorten} label="schlechteste-praline" bind:selected={schlechtestePraline} />
 		<TextField description="Was ich euch noch sagen möchte" label="freitextfeld" bind:inputText={freitext} />
 		<TextField description="Geheimes Pralinen Passwort" label="passwort" bind:inputText={password} />
 		<SubmitButton description="Abschicken" />
