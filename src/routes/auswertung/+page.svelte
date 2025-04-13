@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import { type Feedback, pralinenSorten } from '$lib/common/types';
 	import { PieChart } from 'layerchart';
+	import { Paginate, Pagination, Table } from 'svelte-ux';
 
 	let feedbacks: Feedback[] = [];
 	let loading = true;
@@ -33,27 +34,7 @@
 	</div>
 {:else}
 	<div class='px-9 py-5 relative overflow-x-scroll shadow-md rounded-lg'>
-		<table class='w-full table-auto text-sm text-left rtl:text-right'>
-			<thead class='uppercae font-bold bg-chocolate-light rounded-lg'>
-			<tr>
-				<th>Name</th>
-				<th>Beste Praline</th>
-				<th>Schlechteste Praline</th>
-				<th>Freitext</th>
-			</tr>
-			</thead>
-			<tbody>
-			{#each feedbacks as feedback}
-				<tr class='even:bg-chocolate-light bg-opacity-10'>
-					<td>{feedback.name}</td>
-					<td>{feedback.bestePraline}</td>
-					<td>{feedback.schlechtestePraline}</td>
-					<td>{feedback.freitext}</td>
-				</tr>
-			{/each}
-			</tbody>
-		</table>
-		<div class='flex flex-row justify-center pb-5'>
+		<div class='flex flex-row justify-center pb-20 px-20'>
 			<div class='w-[300px] h-[300px] p-7 text-center'>
 				<h2 class='pb-3'>Beste Praline</h2>
 				<PieChart
@@ -79,5 +60,42 @@
 				/>
 			</div>
 		</div>
+		<Paginate data={feedbacks} perPage={10} let:pageData let:pagination>
+			<Table
+				data={pageData}
+				columns={[
+					{
+						header: 'Name',
+						name: 'name',
+						align: 'left'
+					},
+					{
+						header: 'Beste Praline',
+						name: 'bestePraline',
+						align: 'left'
+					},
+					{
+						header: 'Schlechteste Praline',
+						name: 'schlechtestePraline',
+						align: 'left'
+					},
+					{
+						header: 'Was ich euch noch sagen möchte',
+						name: 'freitext',
+						align: 'left'
+					}
+				]}
+			/>
+		<Pagination
+			{pagination}
+			perPageOptions={[5, 10, 25, 100]}
+			show={["perPage", "pagination", "prevPage", "nextPage"]}
+			classes={{
+      root: "border-t py-1 mt-2",
+      perPage: "flex-1 text-right",
+      pagination: "px-8",
+    }}
+		/>
+		</Paginate>
 	</div>
 {/if}
