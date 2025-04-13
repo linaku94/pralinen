@@ -34,7 +34,7 @@
 	</div>
 {:else}
 	<div class='px-9 py-5 relative overflow-x-scroll shadow-md rounded-lg'>
-		<div class='flex flex-row justify-center pb-20 px-20'>
+		<div class='flex md:flex-row flex-col justify-center pb-20 px-20'>
 			<div class='w-[300px] h-[300px] p-7 text-center'>
 				<h2 class='pb-3'>Beste Praline</h2>
 				<PieChart
@@ -60,6 +60,7 @@
 				/>
 			</div>
 		</div>
+		<div class="min-w-[1000px] overflow-x-scroll">
 		<Paginate data={feedbacks} perPage={10} let:pageData let:pagination>
 			<Table
 				data={pageData}
@@ -97,5 +98,6 @@
     }}
 		/>
 		</Paginate>
+	</div>
 	</div>
 {/if}
