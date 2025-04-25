@@ -9,7 +9,7 @@
 </script>
 
 <div class="bg-karamell23 bg-cover bg-center">
-<div class="bg-white bg-cover bg-opacity-30">
+<div class="bg-white/30 bg-cover">
 
 	<div class="text-lg font-bold">
 		<h1 class="great-vibes-regular text-center text-2xl pt-10">Kollektion 2023</h1>
