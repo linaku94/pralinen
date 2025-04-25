@@ -23,7 +23,7 @@
 </main>
 
 <footer class="bg-chocolate-light text-chocolate-dark w-full p-1">
-	<div class="w-full mx-auto max-w-screen-xl p-4 flex flex-row justify-between items-center">
+	<div class="w-full mx-auto max-w-(--breakpoint-xl) p-4 flex flex-row justify-between items-center">
 		<span>
 		<a href="/" class="hover:text-chocolate-white">Pralinen aus Karlsruhe</a>
 		</span>
