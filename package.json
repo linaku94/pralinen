@@ -42,5 +42,5 @@
 		"layerchart": "^1.0.8",
 		"svelte-ux": "^1.0.4"
 	},
-	"packageManager": "yarn@4.5.1"
+	"packageManager": "yarn@4.9.1"
 }
