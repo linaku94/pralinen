@@ -3,4 +3,9 @@
   "extends": [
     "config:recommended"
   ]
+  ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["* 0-3 1 * *"]
+  },
 }
