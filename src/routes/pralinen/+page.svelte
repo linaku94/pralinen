@@ -9,7 +9,7 @@
 </script>
 <div class="bg-himbeer25 bg-cover bg-center bg-opacity-90">
 		<div class="text-lg font-bold">
-			<h1 class="great-vibes-regular text-3xl text-center pt-10">Kollektion 2025</h1>
+			<h1 class="great-vibes-regular text-3xl text-center pt-10 text-black">Kollektion 2025</h1>
 		</div>
 		<div class="px-10 py-10 flex flex-col items-center ">
 			<Praline picture={Himbeer} name='Himbeer' description='Unser zeitloser Superstar' />

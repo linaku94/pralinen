@@ -29,7 +29,7 @@
 </script>
 
 <div class='text-lg font-bold'>
-	<h1 class='great-vibes-regular text-center text-3xl pt-10'>Umfrageergebnisse 2026</h1>
+	<h1 class='regular-text text-center text-3xl pt-10'>Umfrageergebnisse 2026</h1>
 </div>
 {#if loading}
 	<div class='text-center p-16 font-normal'>
@@ -37,7 +37,7 @@
 	</div>
 {:else}
 	<div class='px-9 py-5 relative overflow-x-scroll shadow-md rounded-lg'>
-		<div class='flex md:flex-row flex-col justify-center pb-20 px-20'>
+		<div class='flex md:flex-row flex-col justify-center pb-20 px-10'>
 			<div class='w-[300px] h-[300px] p-7 text-center'>
 				<h2 class='pb-3'>Beste Praline</h2>
 				<PieChart

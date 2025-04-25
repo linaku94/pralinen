@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss';
 import colors from 'tailwindcss/colors';
-import layerstack from '@layerstack/tailwind/plugin'
+import layerstack from '@layerstack/tailwind/plugin';
 
 export default {
 	content: [
@@ -41,7 +41,7 @@ export default {
 				'surface-300': colors['gray']['300'],
 				'surface-content': colors['gray']['900'],
 				'color-scheme': 'light'
-			},
+			}
 			// dark: {
 			// 	primary: colors['orange']['500'],
 			// 	'primary-content': 'black',
@@ -56,6 +56,6 @@ export default {
 	},
 
 	plugins: [
-		layerstack,  // uses hsl() color space by default. To use oklch(), use: layerstack({ colorSpace: 'oklch' }),
+		layerstack // uses hsl() color space by default. To use oklch(), use: layerstack({ colorSpace: 'oklch' }),
 	]
 } satisfies Config;
