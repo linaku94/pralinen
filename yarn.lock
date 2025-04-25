@@ -3142,13 +3142,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^15.15.0":
-  version: 15.15.0
-  resolution: "globals@npm:15.15.0"
-  checksum: 10c0/f9ae80996392ca71316495a39bec88ac43ae3525a438b5626cd9d5ce9d5500d0a98a266409605f8cd7241c7acf57c354a48111ea02a767ba4f374b806d6861fe
-  languageName: node
-  linkType: hard
-
 "graceful-fs@npm:^4.2.4, graceful-fs@npm:^4.2.6":
   version: 4.2.11
   resolution: "graceful-fs@npm:4.2.11"
@@ -4255,7 +4248,6 @@ __metadata:
     eslint-config-prettier: "npm:^10.1.2"
     eslint-plugin-svelte: "npm:^3.5.1"
     firebase: "npm:^11.6.0"
-    globals: "npm:^15.15.0"
     layerchart: "npm:^1.0.8"
     prettier: "npm:^3.5.3"
     prettier-plugin-svelte: "npm:^3.3.3"
