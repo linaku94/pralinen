@@ -37,7 +37,7 @@
 		"@sveltejs/adapter-static": "^3.0.10",
 		"d3-array": "^3.2.4",
 		"d3-scale": "^4.0.2",
-		"firebase": "^11.10.0",
+		"firebase": "^12.6.0",
 		"layerchart": "^1.0.12",
 		"svelte-ux": "^1.0.9"
 	},
