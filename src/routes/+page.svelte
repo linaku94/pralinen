@@ -2,8 +2,10 @@
 </script>
 
 
-<div class="text-lg font-bold bg-mango bg-cover bg-center min-h-screen">
+<div class="text-lg font-bold bg-mango bg-cover bg-center min-h-screen items-center flex flex-col">
 	<h1 class="great-vibes-regular text-center text-3xl dark:text-chocolate-dark p-10">Pralinen aus Karlsruhe</h1>
+	<div class="bg-white/50 w-3/4 md:w-1/2 rounded-lg flex flex-col content-center p-10">
+
 	<p class="regular-text text-center dark:text-chocolate-dark px-5">
 		Hi, <br />
 		Wir sind Chrissi, Isi und Lina <br />
@@ -14,6 +16,7 @@
 		<br/>
 		❄️🎄 Frohe Weihnachten 🎄❄️
 	</p>
+		</div>
 	<div class="pb-20">
 	</div>
 </div>
