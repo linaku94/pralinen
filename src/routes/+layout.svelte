@@ -9,7 +9,7 @@
 			<a href="/" class="great-vibes-regular text-3xl hover:text-chocolate-white pb-3">Pralinen aus Karlsruhe</a>
 		</div>
 		<ul class="flex space-x-4">
-			<li><a href="/pralinen" class="hover:text-chocolate-white">2024</a></li>
+			<li><a href="/pralinen" class="hover:text-chocolate-white">2025</a></li>
 <!--			<li><a href="/rezensionen" class="hover:text-chocolate-white">Rezensionen</a></li>-->
 			<li><a href="/umfrage" class="hover:text-chocolate-white">Umfrage</a></li>
 			<li><a href="/auswertung" class="hover:text-chocolate-white">Auswertung</a></li>

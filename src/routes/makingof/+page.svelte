@@ -1,20 +1,24 @@
 <script>
-	import schokolade from'$lib/assets/makingof/schokolade_small.png';
-	import arbeiten2 from '$lib/assets/makingof/arbeiten2.png';
-	import arbeiten from '$lib/assets/makingof/arbeiten.png';
-	import gruppenbild from '$lib/assets/makingof/karamell_gruppenbild.png';
-	import ergebnis from '$lib/assets/makingof/ergebnis.png';
+	import karamell from'$lib/assets/2025/karamell_warten.jpg';
+	import fuellungen from '$lib/assets/2025/fuellungen.jpg';
+	import fuellen from '$lib/assets/2025/fuellen.jpg';
+	import ummanteln from '$lib/assets/2025/ummanteln.jpg';
+	import verpacken from '$lib/assets/2025/verpacken.jpg';
+	import shooting from '$lib/assets/2025/shooting.jpg';
+	import gruppenbild from '$lib/assets/2025/gruppenbild.jpg';
 	import RoundedImageWithDescription from '../../components/RoundedImageWithDescription.svelte';
 </script>
 
 
 <div class="flex flex-col items-center justify-center gap-16 md:gap-32">
 	<h1 class="great-vibes-regular text-3xl pt-10">Making Of</h1>
-		<RoundedImageWithDescription image={schokolade} alt={'schokolade'} imagePosition={'left'} description="Hier beginnt alles mit 5kg feinster Schokolade..." />
-		<RoundedImageWithDescription image={gruppenbild} alt={'gruppenbild'} imagePosition={'right'} description="... die zu köstlichen Füllungen verarbeitet wird ..." />
-		<RoundedImageWithDescription image={arbeiten2} alt={'arbeiten'} imagePosition={'left'} description="... die Pralinen werden befüllt, versiegelt ..." />
-		<RoundedImageWithDescription image={arbeiten} alt={'arbeiten2'} imagePosition={'right'} description="... ummantelt und verziert ..." />
-		<RoundedImageWithDescription image={ergebnis} alt={'ergebnis'} imagePosition={'left'} description="... bis alle fertig sind." />
+		<RoundedImageWithDescription image={karamell} alt={'karamell'} imagePosition={'left'} description="Mit Karamell starten und geduldig warten ..." />
+		<RoundedImageWithDescription image={fuellungen} alt={'fuellungen'} imagePosition={'right'} description="... und währenddessen alle anderen Füllungen vorbereiten." />
+		<RoundedImageWithDescription image={fuellen} alt={'arbeiten'} imagePosition={'left'} description="... die Pralinen werden befüllt, versiegelt, ..." />
+		<RoundedImageWithDescription image={ummanteln} alt={'arbeiten2'} imagePosition={'right'} description="... ummantelt und verziert ..." />
+		<RoundedImageWithDescription image={verpacken} alt={'ergebnnis'} imagePosition={'left'} description="... und liebevoll verpackt ..." />
+		<RoundedImageWithDescription image={shooting} alt={'shooting'} imagePosition={'right'} description="... und in Szene gesetzt." />
+		<RoundedImageWithDescription image={gruppenbild} alt={'gruppenbild'} imagePosition={'left'} description="Frohe Weihnachten!" />
 </div>
 
 <style>
