@@ -5,13 +5,16 @@
 	import { PieChart } from 'layerchart';
 	import { Paginate, Pagination, Table } from 'svelte-ux';
 
+	let rawfeedbacks: Feedback[] = [];
 	let feedbacks: Feedback[] = [];
 	let loading = true;
 	let bestePraline: { sorte: string; anzahl: number }[] = [];
 	let schlechtestePraline: { sorte: string; anzahl: number }[] = [];
+  const referenceDate = new Date(2025, 6, 0).getTime()/1000;
 
 	onMount(async () => {
-		feedbacks = await getFeedback() as Feedback[];
+		rawfeedbacks = await getFeedback() as Feedback[];
+		feedbacks = rawfeedbacks.filter(feedback => feedback.timeStamp.seconds > referenceDate);
 		pralinenSorten.forEach(sorte => {
 			bestePraline.push({
 				sorte: sorte, anzahl: feedbacks.filter(feedback => feedback.bestePraline === sorte).length
@@ -26,7 +29,7 @@
 </script>
 
 <div class='text-lg font-bold'>
-	<h1 class='great-vibes-regular text-center text-3xl pt-10'>Umfrageergebnisse 2024</h1>
+	<h1 class='great-vibes-regular text-center text-3xl pt-10'>Umfrageergebnisse 2026</h1>
 </div>
 {#if loading}
 	<div class='text-center p-16 font-normal'>
