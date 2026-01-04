@@ -10,7 +10,7 @@
 </script>
 
 <div class="bg-karlsruhe24 bg-cover bg-center">
-<div class="bg-white bg-cover bg-opacity-30">
+<div class="bg-white/3ß bg-cover bg-opacity-30">
 
 	<div class="text-lg font-bold">
 		<h1 class="great-vibes-regular text-center text-2xl pt-10">Kollektion 2025</h1>
