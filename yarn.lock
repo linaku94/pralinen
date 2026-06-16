@@ -4468,7 +4468,7 @@ __metadata:
     firebase: "npm:^12.6.0"
     layerchart: "npm:^1.0.12"
     prettier: "npm:^3.7.4"
-    prettier-plugin-svelte: "npm:^3.4.0"
+    prettier-plugin-svelte: "npm:^4.0.0"
     prettier-plugin-tailwindcss: "npm:^0.7.2"
     svelte: "npm:^5.46.0"
     svelte-check: "npm:^4.3.4"
@@ -4487,13 +4487,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier-plugin-svelte@npm:^3.4.0":
-  version: 3.4.0
-  resolution: "prettier-plugin-svelte@npm:3.4.0"
+"prettier-plugin-svelte@npm:^4.0.0":
+  version: 4.1.1
+  resolution: "prettier-plugin-svelte@npm:4.1.1"
   peerDependencies:
     prettier: ^3.0.0
-    svelte: ^3.2.0 || ^4.0.0-next.0 || ^5.0.0-next.0
-  checksum: 10c0/caf11188adf6c5ce86189c98de5d0a9371c72bba64fc9b714a9b074f63677a3dead6c3cf3c2912a9aa63b1a2235e6c562b4f7c8f812631c69d3cc1ca07dc1a9c
+    svelte: ^5.0.0
+  checksum: 10c0/23a1c2f6fb64e152f1ad72e646860b67171f1f9d70081a676103a2ad41052c2f9e48f3567b52612c764a9fd06b44128ab098d4c1da4e88c726af5e6503545b67
   languageName: node
   linkType: hard
 
