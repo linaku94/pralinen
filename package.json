@@ -38,7 +38,7 @@
 		"d3-array": "^3.2.4",
 		"d3-scale": "^4.0.2",
 		"firebase": "^12.6.0",
-		"layerchart": "^1.0.12",
+		"layerchart": "^2.0.0",
 		"svelte-ux": "^1.0.9"
 	},
 	"packageManager": "yarn@4.12.0"
