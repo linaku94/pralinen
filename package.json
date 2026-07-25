@@ -24,7 +24,7 @@
 		"eslint-plugin-svelte": "^3.13.1",
 		"prettier": "^3.7.4",
 		"prettier-plugin-svelte": "^3.4.0",
-		"prettier-plugin-tailwindcss": "^0.7.2",
+		"prettier-plugin-tailwindcss": "^0.8.0",
 		"svelte": "^5.46.0",
 		"svelte-check": "^4.3.4",
 		"tailwindcss": "^4.1.18",
@@ -41,5 +41,5 @@
 		"layerchart": "^1.0.12",
 		"svelte-ux": "^1.0.9"
 	},
-	"packageManager": "yarn@4.12.0"
+	"packageManager": "yarn@4.17.1"
 }
