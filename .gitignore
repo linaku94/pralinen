@@ -30,6 +30,7 @@ node_modules
 .svelte-kit
 
 public
+!rebuild/public/
 
 .firebase
 

@@ -1,0 +1,243 @@
+[
+  {
+    "id": "2021",
+    "slug": "2021",
+    "year": 2021,
+    "title": "Kollektion 2021",
+    "description": "Unsere handgemachten Lieblingsstücke aus diesem Jahr. Eine kleine Reise durch die Pralinenküche.",
+    "cover": "/images/2021/gruppenbild.png",
+    "published": true,
+    "pralines": [
+      {
+        "id": "2021-0",
+        "name": "Himbeer",
+        "description": "Unser zeitloser Superstar",
+        "image": "/images/2021/himbeer_medium.png"
+      },
+      {
+        "id": "2021-1",
+        "name": "Zitrone",
+        "description": "Goldene Zitrone, spritzig und frisch",
+        "image": "/images/2021/zitrone_medium.png"
+      },
+      {
+        "id": "2021-2",
+        "name": "Karamell",
+        "description": "Ein Traum aus Karamell und Meersalz",
+        "image": "/images/2021/karamell_small.png"
+      },
+      {
+        "id": "2021-3",
+        "name": "Eierlikör",
+        "description": "Genuss mit Schuss",
+        "image": "/images/2021/eierlikoer_small.png"
+      },
+      {
+        "id": "2021-4",
+        "name": "Mango",
+        "description": "Tango Mango",
+        "image": "/images/2021/mango_medium.png"
+      },
+      {
+        "id": "2021-5",
+        "name": "Kokos",
+        "description": "Cremiges Kokos umhüllt von zarten Flocken",
+        "image": "/images/2021/kokos_small.png"
+      }
+    ]
+  },
+  {
+    "id": "2022",
+    "slug": "2022",
+    "year": 2022,
+    "title": "Kollektion 2022",
+    "description": "Unsere handgemachten Lieblingsstücke aus diesem Jahr. Eine kleine Reise durch die Pralinenküche.",
+    "cover": "/images/2022/gruppenfoto.png",
+    "published": true,
+    "pralines": [
+      {
+        "id": "2022-0",
+        "name": "Himbeer",
+        "description": "Unser zeitloser Superstar",
+        "image": "/images/2022/himbeer_small.png"
+      },
+      {
+        "id": "2022-1",
+        "name": "Zitrone",
+        "description": "Goldene Zitrone, spritzig und frisch",
+        "image": "/images/2022/zitrone_medium.png"
+      },
+      {
+        "id": "2022-2",
+        "name": "Karamell",
+        "description": "Ein Traum aus Karamell und Meersalz",
+        "image": "/images/2022/karamell_small.png"
+      },
+      {
+        "id": "2022-3",
+        "name": "Eierlikör",
+        "description": "Genuss mit Schuss",
+        "image": "/images/2022/eierlikoer_small.png"
+      },
+      {
+        "id": "2022-4",
+        "name": "Mango",
+        "description": "Tango Mango",
+        "image": "/images/2022/mango_small.png"
+      },
+      {
+        "id": "2022-5",
+        "name": "Kokos",
+        "description": "Cremiges Kokos umhüllt von zarten Flocken",
+        "image": "/images/2022/kokos_small.png"
+      }
+    ]
+  },
+  {
+    "id": "2023",
+    "slug": "2023",
+    "year": 2023,
+    "title": "Kollektion 2023",
+    "description": "Unsere handgemachten Lieblingsstücke aus diesem Jahr. Eine kleine Reise durch die Pralinenküche.",
+    "cover": "/images/2023/gruppenfoto.png",
+    "published": true,
+    "pralines": [
+      {
+        "id": "2023-0",
+        "name": "Himbeer",
+        "description": "Unser zeitloser Superstar",
+        "image": "/images/2023/himbeer_small.png"
+      },
+      {
+        "id": "2023-1",
+        "name": "Zitrone",
+        "description": "Goldene Zitrone, spritzig und frisch",
+        "image": "/images/2023/zitrone_small.png"
+      },
+      {
+        "id": "2023-2",
+        "name": "Karamell",
+        "description": "Ein Traum aus Karamell und Meersalz",
+        "image": "/images/2023/karamell_medium.png"
+      },
+      {
+        "id": "2023-3",
+        "name": "Eierlikör",
+        "description": "Genuss mit Schuss",
+        "image": "/images/2023/eierlikoer_small.png"
+      },
+      {
+        "id": "2023-4",
+        "name": "Mango",
+        "description": "Tango Mango",
+        "image": "/images/2023/mango_small.png"
+      },
+      {
+        "id": "2023-5",
+        "name": "Kokos",
+        "description": "Cremiges Kokos umhüllt von zarten Flocken",
+        "image": "/images/2023/kokos_small.png"
+      }
+    ]
+  },
+  {
+    "id": "2024",
+    "slug": "2024",
+    "year": 2024,
+    "title": "Kollektion 2024",
+    "description": "Unsere handgemachten Lieblingsstücke aus diesem Jahr. Eine kleine Reise durch die Pralinenküche.",
+    "cover": "/images/2024/karlsruhe.png",
+    "published": true,
+    "pralines": [
+      {
+        "id": "2024-0",
+        "name": "Karlsruhe",
+        "description": "Pistazie mit Echtgold",
+        "image": "/images/2024/karlsruhe.png"
+      },
+      {
+        "id": "2024-1",
+        "name": "Himbeer",
+        "description": "Unser zeitloser Superstar",
+        "image": "/images/2024/himbeer.png"
+      },
+      {
+        "id": "2024-2",
+        "name": "Zitrone",
+        "description": "Goldene Zitrone, spritzig und frisch",
+        "image": "/images/2024/zitrone.png"
+      },
+      {
+        "id": "2024-3",
+        "name": "Karamell",
+        "description": "Ein Traum aus Karamell und Meersalz",
+        "image": "/images/2024/karamell.png"
+      },
+      {
+        "id": "2024-4",
+        "name": "Eierlikör",
+        "description": "Genuss mit Schuss",
+        "image": "/images/2024/eierlikoer.png"
+      },
+      {
+        "id": "2024-5",
+        "name": "Kaktus",
+        "description": "Prickelndes Kaktus Eis",
+        "image": "/images/2024/kaktus.png"
+      },
+      {
+        "id": "2024-6",
+        "name": "Kokos",
+        "description": "Cremiges Kokos umhüllt von zarten Flocken",
+        "image": "/images/2024/kokos.png"
+      }
+    ]
+  },
+  {
+    "id": "2025",
+    "slug": "2025",
+    "year": 2025,
+    "title": "Kollektion 2025",
+    "description": "Sechs kleine Glücksmomente. Von fruchtiger Himbeere bis zu unserem neuen Matcha: mit Liebe von Chrissi, Isi und Lina gemacht.",
+    "cover": "/images/2025/gruppenbild.jpg",
+    "published": true,
+    "pralines": [
+      {
+        "id": "2025-0",
+        "name": "Himbeer",
+        "description": "Unser zeitloser Superstar",
+        "image": "/images/2025/himbeer.jpg"
+      },
+      {
+        "id": "2025-1",
+        "name": "Zitrone",
+        "description": "Goldene Zitrone, spritzig und frisch",
+        "image": "/images/2025/zitrone.jpg"
+      },
+      {
+        "id": "2025-2",
+        "name": "Karamell",
+        "description": "Ein Traum aus Karamell und Meersalz",
+        "image": "/images/2025/karamell.jpg"
+      },
+      {
+        "id": "2025-3",
+        "name": "Matcha",
+        "description": "Unser Exot",
+        "image": "/images/2025/matcha.jpg"
+      },
+      {
+        "id": "2025-4",
+        "name": "Kaktus",
+        "description": "Unser diesjähriges Special - prickelndes Kaktuseis",
+        "image": "/images/2025/kaktus.jpg"
+      },
+      {
+        "id": "2025-5",
+        "name": "Kokos",
+        "description": "Cremiges Kokos umhüllt von zarten Flocken",
+        "image": "/images/2025/kokos.jpg"
+      }
+    ]
+  }
+]

@@ -1,5 +1,7 @@
 # Pralinen aus Karlsruhe Website
 
+The new React + Cloudflare implementation is in [`rebuild/`](rebuild/README.md). It supports private admin tools, guest survey links, collections and recipes. The original Svelte/Firebase site below remains available during migration.
+
 Deployed to https://pralinen-daac0.web.app/
 
 ## Setup for development

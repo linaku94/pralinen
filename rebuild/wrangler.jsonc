@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pralinen",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-05-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": { "directory": "./dist/client", "binding": "ASSETS", "not_found_handling": "single-page-application", "run_worker_first": ["/api/*"] },
+  "d1_databases": [{ "binding": "DB", "database_name": "pralinen", "database_id": "881a8f31-4c9c-450e-92c3-d5f6035c6033", "migrations_dir": "migrations" }],
+  "vars": { "APP_URL": "https://pralinen.linaku94.workers.dev" }
+}

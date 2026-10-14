@@ -1,0 +1,18 @@
+PRAGMA foreign_keys = ON;
+CREATE TABLE user (id TEXT PRIMARY KEY, name TEXT NOT NULL, email TEXT NOT NULL UNIQUE, emailVerified INTEGER NOT NULL, image TEXT, createdAt INTEGER NOT NULL, updatedAt INTEGER NOT NULL);
+CREATE TABLE session (id TEXT PRIMARY KEY, expiresAt INTEGER NOT NULL, token TEXT NOT NULL UNIQUE, createdAt INTEGER NOT NULL, updatedAt INTEGER NOT NULL, ipAddress TEXT, userAgent TEXT, userId TEXT NOT NULL REFERENCES user(id) ON DELETE CASCADE);
+CREATE INDEX session_user ON session(userId);
+CREATE TABLE account (id TEXT PRIMARY KEY, accountId TEXT NOT NULL, providerId TEXT NOT NULL, userId TEXT NOT NULL REFERENCES user(id) ON DELETE CASCADE, accessToken TEXT, refreshToken TEXT, idToken TEXT, accessTokenExpiresAt INTEGER, refreshTokenExpiresAt INTEGER, scope TEXT, password TEXT, createdAt INTEGER NOT NULL, updatedAt INTEGER NOT NULL);
+CREATE INDEX account_user ON account(userId);
+CREATE UNIQUE INDEX account_provider ON account(providerId, accountId);
+CREATE TABLE verification (id TEXT PRIMARY KEY, identifier TEXT NOT NULL, value TEXT NOT NULL, expiresAt INTEGER NOT NULL, createdAt INTEGER NOT NULL, updatedAt INTEGER NOT NULL);
+CREATE INDEX verification_identifier ON verification(identifier);
+CREATE TABLE admin_invites (email TEXT PRIMARY KEY COLLATE NOCASE, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE collections (id TEXT PRIMARY KEY, slug TEXT NOT NULL UNIQUE, year INTEGER NOT NULL, title TEXT NOT NULL, description TEXT NOT NULL, cover TEXT NOT NULL, published INTEGER NOT NULL DEFAULT 0, pralines TEXT NOT NULL, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX collections_published ON collections(published, year);
+CREATE TABLE questionnaires (id TEXT PRIMARY KEY, collection_id TEXT NOT NULL REFERENCES collections(id), title TEXT NOT NULL, introduction TEXT NOT NULL, status TEXT NOT NULL CHECK(status IN ('draft','open','closed')), token TEXT NOT NULL UNIQUE, questions TEXT NOT NULL, locked INTEGER NOT NULL DEFAULT 0, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE submissions (id TEXT PRIMARY KEY, questionnaire_id TEXT NOT NULL REFERENCES questionnaires(id), name TEXT NOT NULL DEFAULT '', answers TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX submissions_questionnaire ON submissions(questionnaire_id, created_at);
+CREATE TABLE recipes (id TEXT PRIMARY KEY, title TEXT NOT NULL, praline TEXT NOT NULL, yield_amount TEXT NOT NULL, ingredients TEXT NOT NULL, method TEXT NOT NULL, notes TEXT NOT NULL, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE images (id TEXT PRIMARY KEY, content_type TEXT NOT NULL, bytes BLOB NOT NULL);
+CREATE TABLE rate_limits (key TEXT PRIMARY KEY, count INTEGER NOT NULL, expires_at INTEGER NOT NULL);
