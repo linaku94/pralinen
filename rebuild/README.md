@@ -4,9 +4,9 @@ The replacement lives alongside the existing Firebase/Svelte app. The current Fi
 
 ## Current deployment
 
-The public site is deployed at <https://pralinen.linaku94.workers.dev> with the `pralinen` D1 database and all three migrations applied. The initial admin invitation is `linaku94@gmail.com`. The session-signing secret is stored in Cloudflare; it is not in this repository.
+The public site is deployed at <https://pralinen.linaku94.workers.dev> with the `pralinen` D1 database and all four migrations applied. The initial admin invitation is `linaku94@gmail.com`. The session-signing secret is stored in Cloudflare; it is not in this repository.
 
-Google login is not enabled yet. Create a Google OAuth **Web application** client with authorized origin `https://pralinen.linaku94.workers.dev` and redirect URI `https://pralinen.linaku94.workers.dev/api/auth/callback/google`. Store the client ID as `GOOGLE_CLIENT_ID` and the client secret as `GOOGLE_CLIENT_SECRET` in the `pralinen` Worker's runtime secrets, then deploy the settings. If Google’s consent screen is in testing mode, add `linaku94@gmail.com` as a test user. Finally verify a real sign-in at `/admin`.
+Google login is configured and the owner has confirmed successful sign-in. The OAuth client uses authorized origin `https://pralinen.linaku94.workers.dev` and redirect URI `https://pralinen.linaku94.workers.dev/api/auth/callback/google`. `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` are stored in the Worker's runtime secrets. If Google’s consent screen is in testing mode, new invited admins must also be added as Google test users.
 
 The initial deployment was made directly with Wrangler. GitHub automatic deployment has not been connected.
 
@@ -31,7 +31,7 @@ Open <http://localhost:5173>. Use that hostname consistently because login and w
 - `/admin`: real admin area, requiring an invited Google account
 - `/umfrage/<token>`: a guest questionnaire link created in the admin area
 
-The preview route has no authentication bypass and no access to real private data. It is not registered in production builds. The local D1 database persists in `.wrangler/` and is separate from any deployed database. Historical Firestore feedback has not been imported.
+The preview route has no authentication bypass and no access to real private data. It is not registered in production builds. The local D1 database persists in `.wrangler/` and is separate from any deployed database. Production historical feedback is not included in local schema/content migrations.
 
 `npm run content` copies existing repository photos to ignored `public/images/`, generates the initial collection migration, and writes the imported preview content. It runs automatically before dev/build. It does not overwrite collection edits already saved in D1. Do not alter applied migrations; add a new migration for subsequent database changes.
 
@@ -105,3 +105,28 @@ npm run build
 Tests use an isolated emulated D1 database and synthetic signed sessions. They verify anonymous/non-invited/revoked access denial, origin checks, collection imports, recipe persistence, survey lifecycle, answer validation, frozen questions, evaluation calculations and CSV escaping. They do not contact Google.
 
 Before retiring Firebase, back up Firestore using an authorized export and remove password fields during import. Historical records have no explicit questionnaire ID: confirm their collection mapping before importing. The current repo’s Firestore rules allow public reads; this rebuild does not change the deployed rules.
+
+## Historical feedback migration
+
+On 2026-10-15, 52 Firestore responses were migrated to closed questionnaires: 29 for collection 2024 (December 2024–March 2025), and 23 for collection 2025 (December 2025–February 2026). The assignment was checked against the historical form choices in Git. The original `Kaktus-Eis` label is retained. Names, comments and submission times are preserved, including unanswered fields. No historical responses were deleted or changed in Firebase.
+
+The export, generated SQL and verification receipts are private files under ignored `.migration/`. They must never be committed or copied into public assets. The exporter uses a Firestore field mask to exclude passwords at the source. Production had no existing questionnaires/responses before this import; that empty state is recorded locally. The separate D1 export endpoint was unavailable to the CLI token, so no full database export was taken.
+
+To prepare a later import, use Node 22+:
+
+```sh
+node scripts/export-legacy-feedback.mjs .migration/source.json
+node scripts/prepare-legacy-import.mjs .migration/source.json .migration/import.sql
+```
+
+Review the counts before writing. The importer only accepts the two verified historical date windows and their original flavour lists; conflicting or unknown records stop preparation for manual review. Apply schema migrations, then the reviewed data file, and verify every record:
+
+```sh
+npm run db:remote
+npx wrangler d1 execute pralinen --remote --file .migration/import.sql
+node scripts/verify-legacy-import.mjs .migration/source.json .migration/receipt.json
+```
+
+Stable Firestore-derived IDs and `legacy_feedback_imports` prevent duplicates. Replaying unchanged data is safe. Changed source content is rejected rather than overwriting an existing imported response. The scripts only print counts and validation metadata, not names/comments. File creation uses private permissions and refuses to overwrite existing exports/plans.
+
+Migration is a snapshot, not continuous synchronization. The old Firebase form remains unchanged and can still collect new feedback until explicitly retired.
