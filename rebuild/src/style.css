@@ -19,3 +19,8 @@
 .shopping-add { background:#f6f0e7; padding:24px; border-radius:16px; margin:28px 0; }
 .shopping-add label { margin-bottom:16px; }
 .recipe-view,.shopping-view { padding:clamp(20px,4vw,48px); }
+
+.shopping-add { display:flex; flex-direction:column; gap:18px; }
+.shopping-add > h3,.shopping-add > p,.shopping-add > label { margin:0; }
+.shopping-add > .button { align-self:flex-start; }
+.unit-field { display:flex; flex-direction:column; gap:12px; }

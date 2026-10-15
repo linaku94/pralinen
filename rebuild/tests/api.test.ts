@@ -88,7 +88,13 @@ describe('collection, recipe and questionnaire flow', () => {
     expect((await request('/api/admin/shopping-lists/new-list',{method:'PUT',body:JSON.stringify(checked)},true)).status).toBe(409);
     const lists=await (await request('/api/admin/shopping-lists',{},true)).json() as Record<string,any>[];
     expect(lists.find(l=>l.id==='new-list')?.items[0].amount).toBe(200);
-    expect((await request(`/api/admin/shopping-lists/${combined.id}`,{method:'PUT',body:JSON.stringify(combined)},true)).status).toBe(200);
+    const manual={id:'manual-paper',name:'Backpapier',amount:2,unit:'Packung',section:'Sonstiges',notes:'Große Bögen',checked:true};
+    const withManual=await (await request(`/api/admin/shopping-lists/${combined.id}`,{method:'PUT',body:JSON.stringify({...combined,items:[...combined.items,manual]})},true)).json() as Record<string,any>;
+    const third=await request(`/api/admin/shopping-lists/${withManual.id}/recipes`,{method:'POST',body:JSON.stringify({recipeId:'shopping-test',revision:withManual.revision})},true);
+    expect(third.status).toBe(200);
+    const final=await third.json() as Record<string,any>;
+    expect(final.id).toBe(created.id);expect(final.items[0].amount).toBe(300);
+    expect(final.items[1]).toMatchObject(manual);
   });
   it('shows only published collections and persists private recipes', async () => {
     const collections = await (await request('/api/collections')).json() as { id:string }[];
