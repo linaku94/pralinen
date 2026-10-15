@@ -1,12 +1,13 @@
 import { Hono } from 'hono';
 import { configured, createAuth, type Env } from './auth';
-import { collectionSchema, questionnaireSchema, recipeSchema, validateAnswers, csvExport, type Question, type Submission } from '../src/domain';
+import { collectionSchema, questionnaireSchema, recipeSchema, recipeDetailsSchema, shoppingListSchema, validateAnswers, csvExport, type Question, type Submission } from '../src/domain';
 import { ZodError } from 'zod';
 
 const app = new Hono<{ Bindings: Env }>();
 const decodeCollection = (r: Record<string, unknown>) => ({ ...r, published: !!r.published, pralines: JSON.parse(String(r.pralines)) });
 const decodeQuestionnaire = (r: Record<string, unknown>) => ({ id: r.id, collectionId: r.collection_id, title: r.title, introduction: r.introduction, status: r.status, token: r.token, locked: !!r.locked, questions: JSON.parse(String(r.questions)) });
-const decodeRecipe = (r: Record<string, unknown>) => ({ ...r, yieldAmount: r.yield_amount });
+const decodeRecipe = (r: Record<string, unknown>) => ({ id:r.id,title:r.title,praline:r.praline,ingredients:r.ingredients,method:r.method,notes:r.notes, ...recipeDetailsSchema.parse(JSON.parse(String(r.details ?? '{}'))), yieldAmount: r.yield_amount, sourceArchive:JSON.parse(String(r.source_archive ?? '{}')) });
+const decodeShoppingList = (r: Record<string, unknown>) => ({ id:r.id, title:r.title, year:r.year, ...JSON.parse(String(r.details)), sourceArchive:JSON.parse(String(r.source_archive ?? '{}')) });
 const decodeSubmission = (r: Record<string, unknown>): Submission => ({ id: String(r.id), name: String(r.name), answers: JSON.parse(String(r.answers)), createdAt: String(r.created_at) });
 
 app.use('/api/*', async (c, next) => {
@@ -131,8 +132,21 @@ app.get('/api/admin/recipes', async c => {
   return c.json(results.map(decodeRecipe));
 });
 app.put('/api/admin/recipes/:id', async c => {
-  const v = recipeSchema.parse(await jsonBody(c.req.raw));
-  await c.env.DB.prepare('INSERT INTO recipes (id, title, praline, yield_amount, ingredients, method, notes) VALUES (?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET title=excluded.title, praline=excluded.praline, yield_amount=excluded.yield_amount, ingredients=excluded.ingredients, method=excluded.method, notes=excluded.notes, updated_at=CURRENT_TIMESTAMP').bind(c.req.param('id'), v.title, v.praline, v.yieldAmount, v.ingredients, v.method, v.notes).run();
+  const old = await c.env.DB.prepare('SELECT details FROM recipes WHERE id = ?').bind(c.req.param('id')).first<{details:string}>();
+  const body = await jsonBody(c.req.raw);
+  const v = recipeSchema.parse({ ...JSON.parse(old?.details ?? '{}'), ...body });
+  const details = recipeDetailsSchema.parse(v);
+  await c.env.DB.prepare('INSERT INTO recipes (id, title, praline, yield_amount, ingredients, method, notes,details) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET title=excluded.title, praline=excluded.praline, yield_amount=excluded.yield_amount, ingredients=excluded.ingredients, method=excluded.method, notes=excluded.notes, details=excluded.details, updated_at=CURRENT_TIMESTAMP').bind(c.req.param('id'), v.title, v.praline, v.yieldAmount, v.ingredients, v.method, v.notes,JSON.stringify(details)).run();
+  return c.json({ success: true });
+});
+app.get('/api/admin/shopping-lists', async c => {
+  const { results } = await c.env.DB.prepare('SELECT * FROM shopping_lists ORDER BY year DESC,title').all();
+  return c.json(results.map(decodeShoppingList));
+});
+app.put('/api/admin/shopping-lists/:id', async c => {
+  const v = shoppingListSchema.parse(await jsonBody(c.req.raw));
+  const { title,year,...details } = v;
+  await c.env.DB.prepare('INSERT INTO shopping_lists (id,title,year,details) VALUES (?,?,?,?) ON CONFLICT(id) DO UPDATE SET title=excluded.title, year=excluded.year, details=excluded.details, updated_at=CURRENT_TIMESTAMP').bind(c.req.param('id'),title,year,JSON.stringify(details)).run();
   return c.json({ success: true });
 });
 app.all('/api/*', c => c.json({ error: 'Nicht gefunden.' }, 404));

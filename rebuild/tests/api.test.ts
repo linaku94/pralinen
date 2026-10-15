@@ -14,7 +14,7 @@ function request(path: string, options: RequestInit = {}, admin = false) {
 beforeAll(async () => {
   mf = new Miniflare({ modules:true, script:'export default { fetch() { return new Response("test"); } };', compatibilityDate:'2026-05-01', d1Databases:{ DB:'test-pralinen' } });
   const db = await mf.getD1Database('DB') as unknown as D1Database;
-  for (const file of ['0001_schema.sql','0002_content.sql']) {
+  for (const file of ['0001_schema.sql','0002_content.sql','0005_recipe_workbook.sql']) {
     const sql = await readFile(new URL(`../migrations/${file}`,import.meta.url),'utf8');
     await db.exec(sql.replaceAll('\n',' '));
   }
@@ -31,7 +31,7 @@ afterAll(async () => { await mf?.dispose(); });
 
 describe('private access', () => {
   it('denies unauthenticated reads, writes and exports', async () => {
-    for (const path of ['/api/admin/recipes','/api/admin/collections','/api/admin/questionnaires','/api/admin/questionnaires/test/responses','/api/admin/questionnaires/test/export']) expect((await request(path)).status).toBe(401);
+    for (const path of ['/api/admin/recipes','/api/admin/shopping-lists','/api/admin/collections','/api/admin/questionnaires','/api/admin/questionnaires/test/responses','/api/admin/questionnaires/test/export']) expect((await request(path)).status).toBe(401);
     expect((await request('/api/admin/collections/new', { method:'PUT', body:'{}' })).status).toBe(401);
   });
   it('rejects a valid session without an invitation and foreign-origin writes', async () => {
@@ -47,6 +47,23 @@ describe('private access', () => {
 });
 
 describe('collection, recipe and questionnaire flow', () => {
+  it('round-trips structured recipe fields and preserves the immutable source archive', async () => {
+    const base = { title:'Imported test',praline:'Test',yieldAmount:'60 Stück',ingredients:'',method:'',notes:'Original note',ingredientRows:[{ id:'zero',name:'Eierlikör',amount:0,unit:'ml',section:'Füllung',notes:'Prüfen' }],sourceReferences:'Testbuch',alternatives:'100 g Zucker',status:'not-recommended',warnings:['Menge prüfen'] };
+    expect((await request('/api/admin/recipes/structured',{method:'PUT',body:JSON.stringify(base)},true)).status).toBe(200);
+    const archive = {sheetName:'Testquelle',cells:[{address:'A1',row:1,column:1,value:0}]};
+    await env.DB.prepare('UPDATE recipes SET source_archive = ? WHERE id = ?').bind(JSON.stringify(archive),'structured').run();
+    // Simulate an older client: missing new fields must not erase imported details.
+    expect((await request('/api/admin/recipes/structured',{method:'PUT',body:JSON.stringify({title:base.title,praline:base.praline,yieldAmount:base.yieldAmount,ingredients:'Existing text',method:'',notes:'Edited',sourceArchive:{sheetName:'tampered'}})},true)).status).toBe(200);
+    const rows = await (await request('/api/admin/recipes',{},true)).json() as {id:string;ingredientRows:{amount:number}[];sourceArchive:unknown;status:string}[];
+    expect(rows.find(r=>r.id==='structured')).toMatchObject({ingredientRows:[{amount:0}],sourceArchive:archive,status:'not-recommended'});
+  });
+  it('saves private shopping-list data with unknown and zero quantities intact', async () => {
+    const list = {title:'Test list',year:2025,items:[{id:'a',name:'Matcha',amount:0,unit:'Dose',section:'Zutaten',notes:'Originalwert'},{id:'b',name:'Teigfäden',amount:null,unit:'',section:'Sonstiges',notes:''}],extras:'Frühstück',equipment:'Gitter',notes:'Notiz',ordering:'https://example.com',warnings:['Formel prüfen']};
+    expect((await request('/api/admin/shopping-lists/list',{method:'PUT',body:JSON.stringify(list)},true)).status).toBe(200);
+    const lists = await (await request('/api/admin/shopping-lists',{},true)).json() as {items:{amount:number|null}[]}[];
+    expect(lists[0].items.map(i=>i.amount)).toEqual([0,null]);
+    expect((await request('/api/admin/shopping-lists/list',{method:'PUT',headers:{Cookie:outsiderCookie},body:JSON.stringify(list)})).status).toBe(403);
+  });
   it('shows only published collections and persists private recipes', async () => {
     const collections = await (await request('/api/collections')).json() as { id:string }[];
     expect(collections).toHaveLength(5);

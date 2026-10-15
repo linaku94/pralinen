@@ -4,7 +4,7 @@ The replacement lives alongside the existing Firebase/Svelte app. The current Fi
 
 ## Current deployment
 
-The public site is deployed at <https://pralinen.linaku94.workers.dev> with the `pralinen` D1 database and all four migrations applied. The initial admin invitation is `linaku94@gmail.com`. The session-signing secret is stored in Cloudflare; it is not in this repository.
+The public site is deployed at <https://pralinen.linaku94.workers.dev> with the `pralinen` D1 database and all five migrations applied. The initial admin invitation is `linaku94@gmail.com`. The session-signing secret is stored in Cloudflare; it is not in this repository.
 
 Google login is configured and the owner has confirmed successful sign-in. The OAuth client uses authorized origin `https://pralinen.linaku94.workers.dev` and redirect URI `https://pralinen.linaku94.workers.dev/api/auth/callback/google`. `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` are stored in the Worker's runtime secrets. If Google’s consent screen is in testing mode, new invited admins must also be added as Google test users.
 
@@ -56,6 +56,8 @@ Invitation means adding the email to `admin_invites`; this does not send an emai
 - **Questionnaires:** create a draft linked to a collection; customize choice, 1–5 rating and free-text questions; preview; open it and copy its guest link. A collection must be published before its questionnaire opens. Closing stops new responses. Once opened, question definitions and the collection association are locked; create a new questionnaire for changed questions.
 - **Evaluation:** filter by collection/questionnaire, view counts and distributions, inspect ratings and comments, search/paginate responses and export CSV. No responses are public.
 - **Recipes:** save private ingredients, quantities/yield, preparation steps and notes with a praline label. Recipe content is not exposed through a public endpoint.
+- **Recipe details:** structured ingredients include quantity, unit, section and individual notes. Recipes also support source references, alternative quantities, a recommendation status, and source warnings. Preparation instructions can remain blank when the source does not provide them. Quantity `0` and an unknown quantity (`null`) remain distinct.
+- **Shopping lists:** the recipe book includes a separate private area for yearly ingredient quantities, hollow shells, additional shopping, equipment, ordering information and notes. Imported yearly lists are snapshots and are not automatically recalculated from recipe edits.
 
 New uploads accept JPG/PNG/WebP up to 500 KB each. Uploaded gallery images are public; do not upload private recipe attachments through that endpoint. A 25 MB total upload cap protects database space. Existing imported images are served as static files. This deliberately avoids R2, which has usage-based overage billing.
 
@@ -130,3 +132,20 @@ node scripts/verify-legacy-import.mjs .migration/source.json .migration/receipt.
 Stable Firestore-derived IDs and `legacy_feedback_imports` prevent duplicates. Replaying unchanged data is safe. Changed source content is rejected rather than overwriting an existing imported response. The scripts only print counts and validation metadata, not names/comments. File creation uses private permissions and refuses to overwrite existing exports/plans.
 
 Migration is a snapshot, not continuous synchronization. The old Firebase form remains unchanged and can still collect new feedback until explicitly retired.
+
+## Recipe workbook import
+
+On 2026-10-15 the owner-provided Google workbook was read without changing the source. Seven recipes and two yearly shopping lists were imported. Every imported record keeps an immutable source-cell archive, including all 305 populated cells, cached values, original formulas, hyperlinks and notes. The admin editor exposes this under **Originaldaten**. The archive is private and is not replaced when admins edit recipe fields.
+
+The import retains original zero/unknown quantities and incomplete instructions. Source issues are shown as warnings: the zero Eierlikör quantity, a 2025 Matcha quantity still calculated from an Eierlikör formula, mixed cream units in shopping totals, and the 2024 side heading copied into the 2025 list. The Dubai attempt retains its negative assessment. No missing Matcha or Kaktus recipe was invented.
+
+Private snapshots, generated SQL, plans and verification receipts live under ignored `.migration/`, never in Git or public assets. The workbook was downloaded through the authenticated browser; the extracted JSON records each nonempty cell's address, row, column, cached value, number format and any formula/comment/hyperlink. Repeat imports use deterministic IDs and a source-hash ledger, so they do not duplicate or overwrite edited recipes; changed source snapshots require explicit review.
+
+```sh
+node scripts/prepare-recipe-import.mjs .migration/recipes-source.json .migration/recipes-import.sql .migration/recipes-plan.json
+npm run db:remote
+npx wrangler d1 execute pralinen --remote --file .migration/recipes-import.sql
+node scripts/verify-recipe-import.mjs .migration/recipes-plan.json .migration/recipes-verification.json
+```
+
+The mapper is intentionally tied to the reviewed workbook layout and refuses unexpected or missing worksheets. Before using a revised workbook, review its layout and mappings. Source-cell archives preserve the full snapshot, while explicitly mapped fields provide editable recipe and shopping-list views. These source formulas are retained for reference; the application does not execute spreadsheet formulas.

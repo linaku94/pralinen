@@ -16,12 +16,31 @@ export const questionnaireSchema = z.object({
   collectionId: text(100).min(1), title: text(150).min(1), introduction: text(3000), status: z.enum(['draft', 'open', 'closed']),
   questions: z.array(questionSchema).min(1).max(20)
 }).refine(q => new Set(q.questions.map(x => x.id)).size === q.questions.length, 'Fragen-IDs müssen eindeutig sein.');
-export const recipeSchema = z.object({ title: text(150).min(1), praline: text(100), yieldAmount: text(100), ingredients: text(10000).min(1), method: text(20000).min(1), notes: text(10000) });
+export const ingredientSchema = z.object({
+  id: text(100).min(1), name: text(250).min(1), amount: z.number().finite().nonnegative().nullable(),
+  unit: text(80), section: text(100), notes: text(1500)
+});
+export const recipeDetailsSchema = z.object({
+  ingredientRows: z.array(ingredientSchema).max(100).default([]),
+  sourceReferences: text(5000).default(''), alternatives: text(10000).default(''),
+  status: z.enum(['unrated','tested','not-recommended']).default('unrated'),
+  warnings: z.array(text(1000)).max(30).default([])
+});
+export const recipeSchema = z.object({ title: text(150).min(1), praline: text(100), yieldAmount: text(100), ingredients: text(10000), method: text(20000), notes: text(10000) }).extend(recipeDetailsSchema.shape).refine(r => r.ingredients.length > 0 || r.ingredientRows.length > 0, 'Bitte mindestens eine Zutat angeben.');
+export const shoppingListSchema = z.object({
+  title: text(150).min(1), year: z.number().int().min(2000).max(2100),
+  items: z.array(ingredientSchema).max(200), extras: text(10000), equipment: text(10000),
+  notes: text(10000), ordering: text(5000), warnings: z.array(text(1000)).max(30)
+});
+export type SourceCell = { address: string; row: number; column: number; value: string | number | boolean | null; format?: string; formula?: string; comment?: string; link?: string };
+export type SourceArchive = { sourceUrl?: string; sheetName?: string; cells?: SourceCell[] };
+export type Ingredient = z.infer<typeof ingredientSchema>;
+export type ShoppingList = z.infer<typeof shoppingListSchema> & { id: string; sourceArchive?: SourceArchive };
 export type Praline = z.infer<typeof pralineSchema>;
 export type Collection = z.infer<typeof collectionSchema> & { id: string };
 export type Question = z.infer<typeof questionSchema>;
 export type Questionnaire = z.infer<typeof questionnaireSchema> & { id: string; token: string; locked?: boolean };
-export type Recipe = z.infer<typeof recipeSchema> & { id: string };
+export type Recipe = z.infer<typeof recipeSchema> & { id: string; sourceArchive?: SourceArchive };
 export type Submission = { id: string; name: string; answers: Record<string, string | number>; createdAt: string };
 
 export function validateAnswers(questions: Question[], input: unknown) {
