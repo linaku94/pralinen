@@ -27,7 +27,7 @@ Open <http://localhost:5173>. Use that hostname consistently because login and w
 - `/`: redesigned homepage
 - `/kollektionen`: collection archive, including all five imported years
 - `/makingof`: our story and existing making-of photos
-- `/vorschau`: development-only, read-only admin preview with fictional evaluation data, questionnaire preview and recipe layout
+- `/vorschau`: development-only admin preview with fictional evaluation data, a questionnaire preview and an interactive recipe/shopping-list sandbox; sandbox changes stay in browser local storage
 - `/admin`: real admin area, requiring an invited Google account
 - `/umfrage/<token>`: a guest questionnaire link created in the admin area
 

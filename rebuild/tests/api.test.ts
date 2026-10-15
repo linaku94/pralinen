@@ -75,15 +75,20 @@ describe('collection, recipe and questionnaire flow', () => {
     const add=(revision:number,admin=true)=>request('/api/admin/shopping-lists/new-list/recipes',{method:'POST',body:JSON.stringify({recipeId:'shopping-test',revision})},admin);
     expect((await add(1,false)).status).toBe(401);
     const first=await (await add(1)).json() as Record<string,any>;
+    expect(first.id).toBe(created.id);
     expect(first.items[0]).toMatchObject({amount:100,checked:false});
     const checked=await (await request('/api/admin/shopping-lists/new-list',{method:'PUT',body:JSON.stringify({...first,items:first.items.map((i:object)=>({...i,checked:true}))})},true)).json() as Record<string,any>;
     expect(checked.items[0].checked).toBe(true);
     expect((await add(first.revision)).status).toBe(409);
-    const combined=await (await add(checked.revision)).json() as Record<string,any>;
+    const second=await request(`/api/admin/shopping-lists/${first.id}/recipes`,{method:'POST',body:JSON.stringify({recipeId:'shopping-test',revision:checked.revision})},true);
+    expect(second.status).toBe(200);
+    const combined=await second.json() as Record<string,any>;
+    expect(combined.id).toBe(first.id);
     expect(combined.items).toHaveLength(1);expect(combined.items[0]).toMatchObject({amount:200,checked:false});
     expect((await request('/api/admin/shopping-lists/new-list',{method:'PUT',body:JSON.stringify(checked)},true)).status).toBe(409);
     const lists=await (await request('/api/admin/shopping-lists',{},true)).json() as Record<string,any>[];
     expect(lists.find(l=>l.id==='new-list')?.items[0].amount).toBe(200);
+    expect((await request(`/api/admin/shopping-lists/${combined.id}`,{method:'PUT',body:JSON.stringify(combined)},true)).status).toBe(200);
   });
   it('shows only published collections and persists private recipes', async () => {
     const collections = await (await request('/api/collections')).json() as { id:string }[];

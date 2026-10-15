@@ -162,7 +162,7 @@ app.post('/api/admin/shopping-lists/:id/recipes', async c => {
   const {title: _title,year: _year,revision: _revision,...details}=merged;
   const result=await c.env.DB.prepare('UPDATE shopping_lists SET details=?, revision=revision+1, updated_at=CURRENT_TIMESTAMP WHERE id=? AND revision=?').bind(JSON.stringify(details),c.req.param('id'),revision).run();
   if(!result.meta.changes)return c.json({error:'Die Liste wurde inzwischen geändert. Bitte erneut öffnen.'},409);
-  return c.json({...merged,revision:revision+1});
+  return c.json({...list,...merged,revision:revision+1});
 });
 app.all('/api/*', c => c.json({ error: 'Nicht gefunden.' }, 404));
 app.get('*', c => c.env.ASSETS.fetch(c.req.raw));
