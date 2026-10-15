@@ -23,13 +23,13 @@ export const ingredientSchema = z.object({
 export const recipeDetailsSchema = z.object({
   ingredientRows: z.array(ingredientSchema).max(100).default([]),
   sourceReferences: text(5000).default(''), alternatives: text(10000).default(''),
-  status: z.enum(['unrated','tested','not-recommended']).default('unrated'),
   warnings: z.array(text(1000)).max(30).default([])
 });
 export const recipeSchema = z.object({ title: text(150).min(1), praline: text(100), yieldAmount: text(100), ingredients: text(10000), method: text(20000), notes: text(10000) }).extend(recipeDetailsSchema.shape).refine(r => r.ingredients.length > 0 || r.ingredientRows.length > 0, 'Bitte mindestens eine Zutat angeben.');
 export const shoppingListSchema = z.object({
+  revision: z.number().int().nonnegative().default(0),
   title: text(150).min(1), year: z.number().int().min(2000).max(2100),
-  items: z.array(ingredientSchema).max(200), extras: text(10000), equipment: text(10000),
+  items: z.array(ingredientSchema.extend({ checked: z.boolean().default(false) })).max(200).refine(rows=>new Set(rows.map(r=>r.id)).size===rows.length, 'Zutaten-IDs müssen eindeutig sein.'), extras: text(10000), equipment: text(10000),
   notes: text(10000), ordering: text(5000), warnings: z.array(text(1000)).max(30)
 });
 export type SourceCell = { address: string; row: number; column: number; value: string | number | boolean | null; format?: string; formula?: string; comment?: string; link?: string };

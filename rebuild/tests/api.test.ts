@@ -14,7 +14,7 @@ function request(path: string, options: RequestInit = {}, admin = false) {
 beforeAll(async () => {
   mf = new Miniflare({ modules:true, script:'export default { fetch() { return new Response("test"); } };', compatibilityDate:'2026-05-01', d1Databases:{ DB:'test-pralinen' } });
   const db = await mf.getD1Database('DB') as unknown as D1Database;
-  for (const file of ['0001_schema.sql','0002_content.sql','0005_recipe_workbook.sql']) {
+  for (const file of ['0001_schema.sql','0002_content.sql','0005_recipe_workbook.sql','0006_recipe_shopping_modes.sql']) {
     const sql = await readFile(new URL(`../migrations/${file}`,import.meta.url),'utf8');
     await db.exec(sql.replaceAll('\n',' '));
   }
@@ -55,7 +55,8 @@ describe('collection, recipe and questionnaire flow', () => {
     // Simulate an older client: missing new fields must not erase imported details.
     expect((await request('/api/admin/recipes/structured',{method:'PUT',body:JSON.stringify({title:base.title,praline:base.praline,yieldAmount:base.yieldAmount,ingredients:'Existing text',method:'',notes:'Edited',sourceArchive:{sheetName:'tampered'}})},true)).status).toBe(200);
     const rows = await (await request('/api/admin/recipes',{},true)).json() as {id:string;ingredientRows:{amount:number}[];sourceArchive:unknown;status:string}[];
-    expect(rows.find(r=>r.id==='structured')).toMatchObject({ingredientRows:[{amount:0}],sourceArchive:archive,status:'not-recommended'});
+    expect(rows.find(r=>r.id==='structured')).not.toHaveProperty('status');
+    expect(rows.find(r=>r.id==='structured')).toMatchObject({ingredientRows:[{amount:0}],sourceArchive:archive});
   });
   it('saves private shopping-list data with unknown and zero quantities intact', async () => {
     const list = {title:'Test list',year:2025,items:[{id:'a',name:'Matcha',amount:0,unit:'Dose',section:'Zutaten',notes:'Originalwert'},{id:'b',name:'Teigfäden',amount:null,unit:'',section:'Sonstiges',notes:''}],extras:'Frühstück',equipment:'Gitter',notes:'Notiz',ordering:'https://example.com',warnings:['Formel prüfen']};
@@ -64,13 +65,33 @@ describe('collection, recipe and questionnaire flow', () => {
     expect(lists[0].items.map(i=>i.amount)).toEqual([0,null]);
     expect((await request('/api/admin/shopping-lists/list',{method:'PUT',headers:{Cookie:outsiderCookie},body:JSON.stringify(list)})).status).toBe(403);
   });
+  it('adds recipes, persists checkmarks and rejects stale shopping-list writes', async () => {
+    const ingredient={id:'choc',name:'Zartbitterschokolade',amount:100,unit:'g',section:'Füllung',notes:'Fein hacken'};
+    const recipe={title:'Shopping test',praline:'',yieldAmount:'',ingredients:'',ingredientRows:[ingredient],method:'',notes:''};
+    await request('/api/admin/recipes/shopping-test',{method:'PUT',body:JSON.stringify(recipe)},true);
+    const initial={title:'New list',year:2026,items:[],extras:'',equipment:'',notes:'',ordering:'',warnings:[]};
+    const created=await (await request('/api/admin/shopping-lists/new-list',{method:'PUT',body:JSON.stringify(initial)},true)).json() as Record<string,any>;
+    expect(created.revision).toBe(1);
+    const add=(revision:number,admin=true)=>request('/api/admin/shopping-lists/new-list/recipes',{method:'POST',body:JSON.stringify({recipeId:'shopping-test',revision})},admin);
+    expect((await add(1,false)).status).toBe(401);
+    const first=await (await add(1)).json() as Record<string,any>;
+    expect(first.items[0]).toMatchObject({amount:100,checked:false});
+    const checked=await (await request('/api/admin/shopping-lists/new-list',{method:'PUT',body:JSON.stringify({...first,items:first.items.map((i:object)=>({...i,checked:true}))})},true)).json() as Record<string,any>;
+    expect(checked.items[0].checked).toBe(true);
+    expect((await add(first.revision)).status).toBe(409);
+    const combined=await (await add(checked.revision)).json() as Record<string,any>;
+    expect(combined.items).toHaveLength(1);expect(combined.items[0]).toMatchObject({amount:200,checked:false});
+    expect((await request('/api/admin/shopping-lists/new-list',{method:'PUT',body:JSON.stringify(checked)},true)).status).toBe(409);
+    const lists=await (await request('/api/admin/shopping-lists',{},true)).json() as Record<string,any>[];
+    expect(lists.find(l=>l.id==='new-list')?.items[0].amount).toBe(200);
+  });
   it('shows only published collections and persists private recipes', async () => {
     const collections = await (await request('/api/collections')).json() as { id:string }[];
     expect(collections).toHaveLength(5);
     const saved = await request('/api/admin/recipes/recipe', { method:'PUT', body:JSON.stringify({ title:'Himbeer', praline:'Himbeer', yieldAmount:'30 Stück', ingredients:'100 g Schokolade', method:'Schmelzen.', notes:'Test' }) },true);
     expect(saved.status).toBe(200);
     const recipes = await (await request('/api/admin/recipes',{},true)).json() as { title:string }[];
-    expect(recipes[0].title).toBe('Himbeer');
+    expect(recipes.some(r=>r.title==='Himbeer')).toBe(true);
   });
   it('accepts survey answers only when open and freezes opened questions', async () => {
     const q = { collectionId:'2025', title:'Testumfrage', introduction:'Test', status:'draft', questions:[{ id:'best', label:'Lieblingsstück?', type:'choice', required:true, options:['Himbeer','Kokos'] }] };

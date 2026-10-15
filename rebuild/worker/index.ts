@@ -1,13 +1,14 @@
 import { Hono } from 'hono';
 import { configured, createAuth, type Env } from './auth';
 import { collectionSchema, questionnaireSchema, recipeSchema, recipeDetailsSchema, shoppingListSchema, validateAnswers, csvExport, type Question, type Submission } from '../src/domain';
-import { ZodError } from 'zod';
+import { ZodError, z } from 'zod';
+import { mergeIngredients } from '../src/shopping';
 
 const app = new Hono<{ Bindings: Env }>();
 const decodeCollection = (r: Record<string, unknown>) => ({ ...r, published: !!r.published, pralines: JSON.parse(String(r.pralines)) });
 const decodeQuestionnaire = (r: Record<string, unknown>) => ({ id: r.id, collectionId: r.collection_id, title: r.title, introduction: r.introduction, status: r.status, token: r.token, locked: !!r.locked, questions: JSON.parse(String(r.questions)) });
 const decodeRecipe = (r: Record<string, unknown>) => ({ id:r.id,title:r.title,praline:r.praline,ingredients:r.ingredients,method:r.method,notes:r.notes, ...recipeDetailsSchema.parse(JSON.parse(String(r.details ?? '{}'))), yieldAmount: r.yield_amount, sourceArchive:JSON.parse(String(r.source_archive ?? '{}')) });
-const decodeShoppingList = (r: Record<string, unknown>) => ({ id:r.id, title:r.title, year:r.year, ...JSON.parse(String(r.details)), sourceArchive:JSON.parse(String(r.source_archive ?? '{}')) });
+const decodeShoppingList = (r: Record<string, unknown>) => ({ id:String(r.id), ...shoppingListSchema.parse({ ...JSON.parse(String(r.details)), title:r.title, year:r.year, revision:r.revision }), sourceArchive:JSON.parse(String(r.source_archive ?? '{}')) });
 const decodeSubmission = (r: Record<string, unknown>): Submission => ({ id: String(r.id), name: String(r.name), answers: JSON.parse(String(r.answers)), createdAt: String(r.created_at) });
 
 app.use('/api/*', async (c, next) => {
@@ -145,9 +146,23 @@ app.get('/api/admin/shopping-lists', async c => {
 });
 app.put('/api/admin/shopping-lists/:id', async c => {
   const v = shoppingListSchema.parse(await jsonBody(c.req.raw));
-  const { title,year,...details } = v;
-  await c.env.DB.prepare('INSERT INTO shopping_lists (id,title,year,details) VALUES (?,?,?,?) ON CONFLICT(id) DO UPDATE SET title=excluded.title, year=excluded.year, details=excluded.details, updated_at=CURRENT_TIMESTAMP').bind(c.req.param('id'),title,year,JSON.stringify(details)).run();
-  return c.json({ success: true });
+  const { title,year,revision,...details } = v;
+  const result=await c.env.DB.prepare('INSERT INTO shopping_lists (id,title,year,details,revision) VALUES (?,?,?,?,1) ON CONFLICT(id) DO UPDATE SET title=excluded.title, year=excluded.year, details=excluded.details, revision=shopping_lists.revision+1, updated_at=CURRENT_TIMESTAMP WHERE shopping_lists.revision=?').bind(c.req.param('id'),title,year,JSON.stringify(details),revision).run();
+  if(!result.meta.changes) return c.json({error:'Die Liste wurde inzwischen geändert. Bitte erneut öffnen und Änderungen übernehmen.'},409);
+  return c.json(decodeShoppingList((await c.env.DB.prepare('SELECT * FROM shopping_lists WHERE id=?').bind(c.req.param('id')).first())!));
+});
+app.post('/api/admin/shopping-lists/:id/recipes', async c => {
+  const {recipeId,revision}=z.object({recipeId:z.string().min(1).max(100),revision:z.number().int().nonnegative()}).parse(await jsonBody(c.req.raw));
+  const row=await c.env.DB.prepare('SELECT * FROM shopping_lists WHERE id=?').bind(c.req.param('id')).first();
+  const recipeRow=await c.env.DB.prepare('SELECT * FROM recipes WHERE id=?').bind(recipeId).first();
+  if(!row||!recipeRow)return c.notFound();
+  const list=decodeShoppingList(row),recipe=decodeRecipe(recipeRow);
+  if(!recipe.ingredientRows.length)return c.json({error:'Bitte zuerst strukturierte Zutaten zum Rezept hinzufügen.'},400);
+  const merged=shoppingListSchema.parse({...list,items:mergeIngredients(list.items,recipe.ingredientRows)});
+  const {title: _title,year: _year,revision: _revision,...details}=merged;
+  const result=await c.env.DB.prepare('UPDATE shopping_lists SET details=?, revision=revision+1, updated_at=CURRENT_TIMESTAMP WHERE id=? AND revision=?').bind(JSON.stringify(details),c.req.param('id'),revision).run();
+  if(!result.meta.changes)return c.json({error:'Die Liste wurde inzwischen geändert. Bitte erneut öffnen.'},409);
+  return c.json({...merged,revision:revision+1});
 });
 app.all('/api/*', c => c.json({ error: 'Nicht gefunden.' }, 404));
 app.get('*', c => c.env.ASSETS.fetch(c.req.raw));

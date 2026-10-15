@@ -25,7 +25,7 @@ describe('recipe workbook import',()=>{
     expect(plan.recipes[0].details.ingredientRows[0].amount).toBe(0);
     expect(plan.recipes[6].yieldAmount).toBe('');
     expect(plan.recipes[6].details.ingredientRows.find((r:{id:string})=>r.id==='row-10').amount).toBeNull();
-    expect(plan.recipes[6].details.status).toBe('not-recommended');
+    expect(plan.recipes[6].details).not.toHaveProperty('status');
     for(let i=0;i<7;i++)expect(plan.recipes[i].sourceArchive.cells).toEqual(input.sheets[i].cells);
     expect(plan.shoppingLists[1].details.warnings.join(' ')).toContain('Eierlikör-Formel');
   });

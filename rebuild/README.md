@@ -137,7 +137,7 @@ Migration is a snapshot, not continuous synchronization. The old Firebase form r
 
 On 2026-10-15 the owner-provided Google workbook was read without changing the source. Seven recipes and two yearly shopping lists were imported. Every imported record keeps an immutable source-cell archive, including all 305 populated cells, cached values, original formulas, hyperlinks and notes. The admin editor exposes this under **Originaldaten**. The archive is private and is not replaced when admins edit recipe fields.
 
-The import retains original zero/unknown quantities and incomplete instructions. Source issues are shown as warnings: the zero Eierlikör quantity, a 2025 Matcha quantity still calculated from an Eierlikör formula, mixed cream units in shopping totals, and the 2024 side heading copied into the 2025 list. The Dubai attempt retains its negative assessment. No missing Matcha or Kaktus recipe was invented.
+The import retains original zero/unknown quantities and incomplete instructions. Source issues are shown as warnings: the zero Eierlikör quantity, a 2025 Matcha quantity still calculated from an Eierlikör formula, mixed cream units in shopping totals, and the 2024 side heading copied into the 2025 list. The Dubai attempt retains its original notes in the source archive; recipes have no grading/status system. No missing Matcha or Kaktus recipe was invented.
 
 Private snapshots, generated SQL, plans and verification receipts live under ignored `.migration/`, never in Git or public assets. The workbook was downloaded through the authenticated browser; the extracted JSON records each nonempty cell's address, row, column, cached value, number format and any formula/comment/hyperlink. Repeat imports use deterministic IDs and a source-hash ledger, so they do not duplicate or overwrite edited recipes; changed source snapshots require explicit review.
 
@@ -149,3 +149,11 @@ node scripts/verify-recipe-import.mjs .migration/recipes-plan.json .migration/re
 ```
 
 The mapper is intentionally tied to the reviewed workbook layout and refuses unexpected or missing worksheets. Before using a revised workbook, review its layout and mappings. Source-cell archives preserve the full snapshot, while explicitly mapped fields provide editable recipe and shopping-list views. These source formulas are retained for reference; the application does not execute spreadsheet formulas.
+
+### Recipe and shopping-list modes
+
+Recipes open in a full read view with ingredients, quantities, preparation, variants, notes, references and original source data. **Bearbeiten** opens a draft; **Abbrechen** discards it. Recipe ratings were removed (migration 0006 also removes the old status property from stored recipe details).
+
+Shopping lists can be created from **Einkaufslisten → Neue Einkaufsliste** or directly from a recipe. The read view provides persistent shopping checkboxes; editing allows adding or changing individual items and notes. Add one recipe batch from either a recipe or a shopping list. Repeating the action adds another batch. Ingredients with matching normalized names and units are summed across recipe sections. Names ignore case, punctuation and extra spaces; simple unit aliases such as Gramm/g match. Different units, different chocolate types and unknown versus known quantities stay separate. Missing quantities are never treated as zero. Newly added quantities reopen the affected checkbox. Recipe edits do not retroactively change a list.
+
+Shopping-list writes use a revision check to prevent stale browser tabs from silently overwriting newer changes. All new routes retain the admin invite and origin checks.

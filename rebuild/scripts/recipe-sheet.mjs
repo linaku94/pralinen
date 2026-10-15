@@ -10,7 +10,7 @@ const specs = [
   { sheet:'Zitrone', title:'Zitronen-Praline', filling:[2,3,4], coating:[6,7], notes:['G5','A11'] },
   { sheet:'Eierlikör', title:'Eierlikör-Praline', filling:[2,3,4], coating:[6,7], notes:['B10'], references:['B13'], warnings:['Eierlikör ist in der Quelle ausdrücklich mit 0 ml angegeben. Bitte vor der Zubereitung prüfen.'] },
   { sheet:'Mango', title:'Mango-Praline', filling:[2,3,4,5], coating:[7,8], notes:['A11','B11'] },
-  { sheet:'not again - Dubai', title:'Dubai-Praline', filling:[2], coating:[5,6,10,11,12], notes:['A15'], status:'not-recommended', warnings:['Die Quelle bewertet diesen Versuch als „nicht überzeugend“.','Für Pistazien, Blattgold und Teigfäden fehlen Mengen; die Stückzahl des Rezepts ist nicht ausdrücklich angegeben.'] }
+  { sheet:'not again - Dubai', title:'Dubai-Praline', filling:[2], coating:[5,6,10,11,12], notes:['A15'], warnings:['Die Quelle bewertet diesen Versuch als „nicht überzeugend“.','Für Pistazien, Blattgold und Teigfäden fehlen Mengen; die Stückzahl des Rezepts ist nicht ausdrücklich angegeben.'] }
 ];
 
 export function prepareRecipeWorkbook(workbook) {
@@ -38,7 +38,7 @@ export function prepareRecipeWorkbook(workbook) {
     const count=String(get('D1')).match(/\((\d+) Pralinen/);
     const warnings=[...(spec.warnings??[])];
     if(!spec.method)warnings.push('In der Tabelle ist keine vollständige Zubereitung angegeben.');
-    const details={ ingredientRows:[...spec.filling.map(r=>ingredient(r,'Füllung',String(get(`E${r}`)))),...spec.coating.map(r=>ingredient(r,'Hülle und Dekoration',String(get(`E${r}`))))],sourceReferences,alternatives:join(spec.alternatives??[]),status:spec.status??'unrated',warnings };
+    const details={ ingredientRows:[...spec.filling.map(r=>ingredient(r,'Füllung',String(get(`E${r}`)))),...spec.coating.map(r=>ingredient(r,'Hülle und Dekoration',String(get(`E${r}`))))],sourceReferences,alternatives:join(spec.alternatives??[]),warnings };
     recipes.push({id:`sheet-recipe-${hash(sourceDocument+':'+spec.sheet).slice(0,32)}`,title:spec.title,praline:spec.sheet==='not again - Dubai'?'Dubai':spec.sheet,yieldAmount:count?`${count[1]} Pralinen`:'',ingredients:'',method:join(spec.method??[]),notes:join(spec.notes),details,sourceArchive:archive(sheet)});
     sourceKeys.push({key:`${sourceDocument}:${spec.sheet}`,kind:'recipe',targetId:recipes.at(-1).id,hash:hash(JSON.stringify(sheet))});
   }
